@@ -30,15 +30,13 @@ module.exports = {
     chain[0]({}, {}, {
       timeout: function () {
       },
-      cancel: function () {
-        test.ok(true);
+      cancel: function (input) {
+        test.equal(input.reason, 'becuase');
       }
     });
-    timer.cancel('test')[0]({}, {}, {
-      success: function () {
-        test.ok(true);
-        test.done();
-      }
+    timer.cancel('test', { reason: 'becuase' })[0]({}, {}, function () {
+      test.ok(true);
+      test.done();
     });
   },
 
@@ -58,15 +56,11 @@ module.exports = {
       }
     });
 
-    timer.pause('test')[0]({}, {}, {
-      success: function () {
+    timer.pause('test')[0]({}, {}, function () {
+      test.ok(true);
+      timer.restart('test')[0]({}, {}, function () {
         test.ok(true);
-        timer.restart('test')[0]({}, {}, {
-          success: function () {
-            test.ok(true);
-          }
-        });
-      }
+      });
     })
   }
 

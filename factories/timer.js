@@ -16,9 +16,9 @@ module.exports = {
           output.timeout();
           delete timers[name];
         },
-        cancel: function () {
+        cancel: function (outputData) {
           clearTimeout(timer.id);
-          output.cancel();
+          output.cancel(outputData);
           delete timers[name];
         }
       };
@@ -31,13 +31,13 @@ module.exports = {
     }];
   },
 
-  cancel: function (name) {
+  cancel: function (name, outputData) {
     return [function cancelTimer(input, state, output) {
       if (timers[name]) {
-        timers[name].cancel();
+        timers[name].cancel(outputData);
       }
-      output.success();
-    }, { success: [] }];
+      output();
+    }];
   },
 
   pause: function (name) {
@@ -45,8 +45,8 @@ module.exports = {
       if (timers[name]) {
         timers[name].stop();
       }
-      output.success();
-    }, { success: [] }];
+      output();
+    }];
   },
 
   restart: function (name) {
@@ -54,8 +54,8 @@ module.exports = {
       if (timers[name]) {
         timers[name].start();
       }
-      output.success();
-    }, { success: [] }];
+      output();
+    }];
   }
 
 };

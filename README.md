@@ -78,7 +78,7 @@ Timer consistes of 4 action factories, they are all async so that they are skipp
 * `timer.start(timerKey, timeout, [onTimeoutActionsArray], [onCancelActionsArray])`
 * `timer.pause(timerKey)`
 * `timer.restart(timerkey)`
-* `timer.cancel(timerkey)`
+* `timer.cancel(timerkey, outputData)`
 
 Simple case:
 
@@ -112,7 +112,9 @@ signal('mouseOutMessage',
 );
 
 signal('userDismissedMessage',
-  timer.cancel('message')
+  // any data passed in the optional second parameter will
+  // be forwarded to the onCancelAction input
+  timer.cancel('message', optionalData)
 );
 ```
 
