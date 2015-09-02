@@ -4,7 +4,7 @@
   "description": "An actions and factories utility belt for Cerebral",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodeunit tests tests/factories"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/christianalfoni/cerebral-addons/issues"
   },
-  "homepage": "https://github.com/christianalfoni/cerebral-addons#readme"
+  "homepage": "https://github.com/christianalfoni/cerebral-addons#readme",
+  "devDependencies": {
+    "nodeunit": "^0.9.1"
+  }
 }
