@@ -1,0 +1,23 @@
+{
+  "name": "cerebral-addons",
+  "version": "0.1.0",
+  "description": "An actions and factories utility belt for Cerebral",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christianalfoni/cerebral-addons.git"
+  },
+  "keywords": [
+    "cerebral",
+    "actions"
+  ],
+  "author": "Christian Alfoni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/christianalfoni/cerebral-addons/issues"
+  },
+  "homepage": "https://github.com/christianalfoni/cerebral-addons#readme"
+}
