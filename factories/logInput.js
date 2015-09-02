@@ -1,6 +1,6 @@
 module.exports = function (label) {
 
-  return function log(input) {
+  return function logInput(input) {
     console.log(label, input);
   };
 
