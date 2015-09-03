@@ -1,6 +1,24 @@
 # cerebral-addons
 An actions and factories utility belt for Cerebral
 
+#### copyInputToState
+Copies a property of the action input to the store, nested paths are supported by using `['parent', 'child']` syntax.
+
+* `copyInputToState(statePath, inputPath)`
+
+'''js
+signal('settingsOpened',
+  [
+    getServerSettings, {
+      success: [
+        copyInputToState('settings', 'serverSettings')
+      ]
+      error: []
+    }
+  ]
+);
+'''
+
 #### logInput
 ```js
 signal('formSubmitted',
