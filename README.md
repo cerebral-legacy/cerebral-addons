@@ -93,7 +93,10 @@ signal('appMounted',
 #### timer
 Timer consistes of 4 action factories, they are all async so that they are skipped over by the debugger when replaying signals.
 
-* `timer.start(timerKey, timeout, [onTimeoutActionsArray], [onCancelActionsArray])`
+* `timer.start(timerKey, timeout, {
+  timeout: [onTimeoutActionsArray]
+  cancel: [onCancelActionsArray]
+})`
 * `timer.pause(timerKey)`
 * `timer.restart(timerkey)`
 * `timer.cancel(timerkey, outputData)`
@@ -113,11 +116,14 @@ More complex case:
 ```js
 signal('messageReceived',
   showMessageToUser,
-  timer.start('message', 5000, [
-    onTimeoutAction
-  ], [
-    onCancelAction
-  ]),
+  timer.start('message', 5000, {
+    timeout: [
+      onTimeoutAction
+    ],
+    cancel: [
+      onCancelAction
+    ]
+  }),
   hideMessageFromUser
 );
 

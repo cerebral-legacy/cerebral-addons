@@ -20,6 +20,35 @@ module.exports = {
     });
   },
 
+  timerReturnsDefaultActionArrays: function (test) {
+    test.expect(2);
+
+    var chain = timer.start('test', 1);
+
+    test.equal(chain.length, 2);
+    test.deepEqual(chain[1], {
+      timeout: [],
+      cancel: []
+    });
+    test.done();
+  },
+
+  timerReturnsTimerAndTimeoutActions: function (test) {
+    test.expect(2);
+
+    var chain = timer.start('test', 1, {
+      timeout: 'timeout',
+      cancel: 'cancel'
+    });
+
+    test.equal(chain.length, 2);
+    test.deepEqual(chain[1], {
+      timeout: 'timeout',
+      cancel: 'cancel'
+    });
+    test.done();
+  },
+
   timerCanBeCancelled: function (test) {
     test.expect(3);
 

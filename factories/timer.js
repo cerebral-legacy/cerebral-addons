@@ -2,7 +2,7 @@ var timers = {};
 
 module.exports = {
 
-  start: function (name, time, onTimeout, onCancel) {
+  start: function (name, time, factoryOutput) {
     var action = function startTimer(input, state, output) {
       var timer = timers[name] = {
         start: function () {
@@ -26,8 +26,8 @@ module.exports = {
     };
     action.outputs = ['timeout', 'cancel'];
     return [action, {
-      timeout: onTimeout || [],
-      cancel: onCancel || []
+      timeout: (factoryOutput && factoryOutput.timeout) || [],
+      cancel: (factoryOutput && factoryOutput.cancel) || []
     }];
   },
 
