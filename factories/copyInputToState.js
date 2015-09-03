@@ -1,4 +1,4 @@
-module.exports = function (statePath, inputPath) {
+module.exports = function (inputPath, statePath) {
 
   return function copyInputToState(input, state) {
     if (Array.isArray(inputPath)) {

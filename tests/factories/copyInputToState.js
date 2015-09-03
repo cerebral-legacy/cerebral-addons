@@ -19,7 +19,7 @@ module.exports = {
   copyNestedInputValueToState: function (test) {
     test.expect(2);
 
-    var action = copyInputToState('node', ['parent', 'node']);
+    var action = copyInputToState(['parent', 'node'], 'node');
 
     action({ parent: { node: 'test' } }, {
       set: function (path, value) {
