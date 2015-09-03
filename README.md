@@ -6,7 +6,7 @@ Copies a property of the action input to the store, nested paths are supported b
 
 * `copyInputToState(inputPath, statePath)`
 
-'''js
+```js
 signal('settingsOpened',
   [
     getServerSettings, {
@@ -17,7 +17,7 @@ signal('settingsOpened',
     }
   ]
 );
-'''
+```
 
 #### logInput
 ```js
