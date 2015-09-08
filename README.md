@@ -19,13 +19,6 @@ signal('settingsOpened',
 );
 ```
 
-#### logInput
-```js
-signal('formSubmitted',
-  logInput('formData')
-);
-```
-
 #### resetState
 ```js
 // reset the whole store
