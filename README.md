@@ -152,7 +152,23 @@ signal('menuToggled',
 );
 
 // toggle the switch between "On" and "Off"
-signale('switchToggled',
+signal('switchToggled',
   toggle('switch', 'On', 'Off')
 );
 ```
+
+#### when
+
+* `when(statePath, truePath, falsePath)`
+
+truePath defaults to `isTrue` and falsePath defaults to `isFalse`.
+
+```js
+let whenUser = when('user', 'isLoggedIn', 'isUnknown');
+
+signal('securePageOpened',
+  whenUser, {
+    isLoggedIn: [getPageData],
+    isUnknown: [redirectToHome]
+  }
+);

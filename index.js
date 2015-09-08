@@ -6,5 +6,6 @@ module.exports = {
   setWindowTitle: require('./factories/setWindowTitle.js'),
   timeout: require('./factories/timeout.js'),
   timer: require('./factories/timer.js'),
-  toggle: require('./factories/toggle.js')
+  toggle: require('./factories/toggle.js'),
+  when: require('./factories/when.js')
 };

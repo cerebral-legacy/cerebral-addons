@@ -10,6 +10,6 @@ module.exports = function (statePath, onValue, offValue) {
   return function toggle(input, state) {
     var value = state.get(statePath);
     state.set(statePath, value === onValue ? offValue : onValue);
- };
+  };
 
 };
