@@ -1,5 +1,6 @@
 module.exports = {
   copyInputToState: require('./factories/copyInputToState.js'),
+  logState: require('./factories/logState.js'),
   resetState: require('./factories/resetState.js'),
   set: require('./factories/set.js'),
   setWindowTitle: require('./factories/setWindowTitle.js'),

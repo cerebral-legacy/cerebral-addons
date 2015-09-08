@@ -19,6 +19,15 @@ signal('settingsOpened',
 );
 ```
 
+#### logState
+```js
+signal('fieldUpdated',
+  logState('form'),
+  updateField,
+  logState('form')
+);
+```
+
 #### resetState
 ```js
 // reset the whole store
