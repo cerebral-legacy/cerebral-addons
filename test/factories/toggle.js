@@ -1,4 +1,4 @@
-var toggle = require('../../factories/toggle');
+var toggle = require('../../src/factories/toggle');
 
 module.exports = {
 

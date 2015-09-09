@@ -1,4 +1,4 @@
-var copyInputToState = require('../../factories/copyInputToState');
+var copyInputToState = require('../../src/factories/copyInputToState');
 
 module.exports = {
 

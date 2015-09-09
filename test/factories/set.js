@@ -1,4 +1,4 @@
-var set = require('../../factories/set');
+var set = require('../../src/factories/set');
 
 module.exports = {
 

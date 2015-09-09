@@ -1,4 +1,4 @@
-var setTitle = require('../../factories/setWindowTitle');
+var setTitle = require('../../src/factories/setWindowTitle');
 
 module.exports = {
 

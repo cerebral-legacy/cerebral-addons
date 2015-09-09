@@ -1,4 +1,4 @@
-var resetState = require('../../factories/resetState');
+var resetState = require('../../src/factories/resetState');
 
 module.exports = {
 

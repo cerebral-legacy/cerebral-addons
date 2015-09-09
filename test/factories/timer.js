@@ -1,4 +1,4 @@
-var timer = require('../../factories/timer');
+var timer = require('../../src/factories/timer');
 
 module.exports = {
 

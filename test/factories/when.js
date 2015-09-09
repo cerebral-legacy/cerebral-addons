@@ -1,4 +1,4 @@
-var when = require('../../factories/when');
+var when = require('../../src/factories/when');
 
 module.exports = {
 
