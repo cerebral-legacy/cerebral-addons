@@ -1,4 +1,4 @@
-module.exports = function (controller, root) {
+export default function (controller, root) {
 
   return function resetState(input, state) {
     if (root) {
@@ -8,4 +8,4 @@ module.exports = function (controller, root) {
     }
   };
 
-};
+}

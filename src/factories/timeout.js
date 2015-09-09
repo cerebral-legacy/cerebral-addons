@@ -1,4 +1,4 @@
-module.exports = function (delay, action) {
+export default function (delay, action) {
 
   function timeout (input, state, output) {
     setTimeout(output.success, delay);
@@ -10,4 +10,4 @@ module.exports = function (delay, action) {
     }
   ];
 
-};
+}

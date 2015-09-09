@@ -1,22 +1,22 @@
-var timers = {};
+let timers = {};
 
-module.exports = {
+export default {
 
-  start: function (name, time, factoryOutput) {
-    var action = function startTimer(input, state, output) {
-      var timer = timers[name] = {
-        start: function () {
+  start(name, time, factoryOutput) {
+    let action = function startTimer(input, state, output) {
+      let timer = timers[name] = {
+        start() {
           clearTimeout(timer.id);
           timer.id = setTimeout(timer.onTimeout, time);
         },
-        stop: function () {
+        stop() {
           clearTimeout(timer.id);
         },
-        onTimeout: function () {
+        onTimeout() {
           output.timeout();
           delete timers[name];
         },
-        cancel: function (outputData) {
+        cancel(outputData) {
           clearTimeout(timer.id);
           output.cancel(outputData);
           delete timers[name];
@@ -31,7 +31,7 @@ module.exports = {
     }];
   },
 
-  cancel: function (name, outputData) {
+  cancel(name, outputData) {
     return [function cancelTimer(input, state, output) {
       if (timers[name]) {
         timers[name].cancel(outputData);
@@ -40,7 +40,7 @@ module.exports = {
     }];
   },
 
-  pause: function (name) {
+  pause(name) {
     return [function pauseTimer(input, state, output) {
       if (timers[name]) {
         timers[name].stop();
@@ -49,13 +49,12 @@ module.exports = {
     }];
   },
 
-  restart: function (name) {
-    return [function resumeTimer(input, state, output) {
+  restart(name) {
+    return [function restartTimer(input, state, output) {
       if (timers[name]) {
         timers[name].start();
       }
       output();
     }];
   }
-
-};
+}
