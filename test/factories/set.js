@@ -1,19 +1,22 @@
-var set = require('../../src/factories/set');
+import set from '../../src/factories/set';
+import counter, { expect, expectCount } from '../helpers/chaiCounter';
 
-module.exports = {
+beforeEach(counter.reset);
+afterEach(counter.check);
 
-  setValue: function (test) {
-    test.expect(2);
+describe('set()', function () {
 
-    var action = set('test', 'XYZ');
+  it('should set a value', function () {
+    expectCount(2);
+
+    const action = set('test', 'XYZ');
 
     action({}, {
       set: function (path, value) {
-        test.equal(path, 'test');
-        test.equal(value, 'XYZ');
-        test.done();
+        expect(path).to.equal('test');
+        expect(value).to.equal('XYZ');
       }
     });
-  }
+  });
 
-};
+});

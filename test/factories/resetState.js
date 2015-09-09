@@ -1,26 +1,30 @@
-var resetState = require('../../src/factories/resetState');
+import resetState from '../../src/factories/resetState';
+import counter, { expect, expectCount } from '../helpers/chaiCounter';
 
-module.exports = {
+beforeEach(counter.reset);
+afterEach(counter.check);
 
-  resetStore: function (test) {
-    test.expect(1);
+describe('resetState()', function () {
 
-    var action = resetState({
+  it('should reset the store', function () {
+    expectCount(1);
+
+    const action = resetState({
       store: {
         reset: function () {
-          test.ok(true);
-          test.done();
+          expect(true).to.be.ok;
         }
       }
     });
 
     action();
-  },
+  });
 
-  resetStoreNode: function (test) {
-    test.expect(2);
 
-    var action = resetState({
+  it('should reset a store node', function () {
+    expectCount(2);
+
+    const action = resetState({
       store: {
         initialState: {
           node: 'test'
@@ -30,11 +34,10 @@ module.exports = {
 
     action({}, {
       set: function (path, value) {
-        test.equal(path, 'node');
-        test.equal(value, 'test');
-        test.done();
+        expect(path).to.equal('node');
+        expect(value).to.equal('test');
       }
     });
-  }
+  });
 
-};
+});

@@ -1,33 +1,35 @@
-var copyInputToState = require('../../src/factories/copyInputToState');
+import copyInputToState from '../../src/factories/copyInputToState';
+import counter, { expect, expectCount } from '../helpers/chaiCounter';
 
-module.exports = {
+beforeEach(counter.reset);
+afterEach(counter.check);
 
-  copyInputValueToState: function (test) {
-    test.expect(2);
+describe('copyInputToState()', function () {
 
-    var action = copyInputToState('node', 'node');
+  it('should copy a value', function () {
+    expectCount(2);
+
+    const action = copyInputToState('node', 'node');
 
     action({ node: 'test' }, {
       set: function (path, value) {
-        test.equal(path, 'node');
-        test.equal(value, 'test');
-        test.done();
+        expect(path).to.equal('node');
+        expect(value).to.equal('test');
       }
     });
-  },
+  });
 
-  copyNestedInputValueToState: function (test) {
-    test.expect(2);
+  it('should copy a nested value', function () {
+    expectCount(2);
 
-    var action = copyInputToState(['parent', 'node'], 'node');
+    const action = copyInputToState(['parent', 'node'], 'node');
 
     action({ parent: { node: 'test' } }, {
       set: function (path, value) {
-        test.equal(path, 'node');
-        test.equal(value, 'test');
-        test.done();
+        expect(path).to.equal('node');
+        expect(value).to.equal('test');
       }
     });
-  }
+  });
 
-};
+});

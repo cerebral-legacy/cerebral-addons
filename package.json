@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint src test",
-    "dev": "parallelshell 'babel src --watch --out-dir lib' 'watch --wait=2 \"eslint src test && mocha --compilers js:babel/register --recursive --reporter dot\" src test'",
+    "dev": "parallelshell 'babel src --watch --out-dir lib' 'watch --wait=1 \"eslint src test && mocha --compilers js:babel/register --recursive --reporter dot\" src test'",
     "prebuild": "npm run lint",
     "build": "babel src --out-dir lib",
     "pretest": "npm run lint",

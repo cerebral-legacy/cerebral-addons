@@ -1,85 +1,85 @@
-var when = require('../../src/factories/when');
+import when from '../../src/factories/when';
+import counter, { expect, expectCount } from '../helpers/chaiCounter';
 
-module.exports = {
+beforeEach(counter.reset);
+afterEach(counter.check);
 
-  whenTrueCallsIsTrue: function (test) {
-    test.expect(2);
+describe('when()', function () {
 
-    var action = when('test');
+  it('should call isTrue when true', function () {
+    expectCount(2);
+
+    const action = when('test');
 
     action({}, {
-      get: function (path) {
-        test.equal(path, 'test');
+      get(path) {
+        expect(path).to.equal('test');
         return true;
       }
     }, {
-      isTrue: function () {
-        test.ok(true);
-        test.done();
+      isTrue() {
+        expect(true).to.be.ok;
       },
-      isFalse: function () {
+      isFalse() {
       }
     });
-  },
+  });
 
-  whenFalseCallsIsFalse: function (test) {
-    test.expect(2);
+  it('should call isFalse when false', function () {
+    expectCount(2);
 
-    var action = when('test');
+    const action = when('test');
 
     action({}, {
-      get: function (path) {
-        test.equal(path, 'test');
+      get(path) {
+        expect(path).to.equal('test');
         return false;
       }
     }, {
-      isTrue: function () {
+      isTrue() {
       },
-      isFalse: function () {
-        test.ok(true);
-        test.done();
+      isFalse() {
+        expect(true).to.be.ok;
       }
     });
-  },
+  });
 
-  whenTrueCallsCustomTrue: function (test) {
-    test.expect(2);
+  it('should call customTrue when true', function () {
+    expectCount(2);
 
-    var action = when('test', 'yes', 'no');
+    const action = when('test', 'yes', 'no');
 
     action({}, {
-      get: function (path) {
-        test.equal(path, 'test');
+      get(path) {
+        expect(path).to.equal('test');
         return true;
       }
     }, {
-      yes: function () {
-        test.ok(true);
-        test.done();
+      yes() {
+        expect(true).to.be.ok;
       },
-      no: function () {
+      no() {
       }
     });
-  },
+  });
 
-  whenFalseCallsCustomFalse: function (test) {
-    test.expect(2);
+  it('should call customFalse when false', function () {
+    expectCount(2);
 
-    var action = when('test', 'yes', 'no');
+    const action = when('test', 'yes', 'no');
 
     action({}, {
-      get: function (path) {
-        test.equal(path, 'test');
+      get(path) {
+        expect(path).to.equal('test');
         return false;
       }
     }, {
-      yes: function () {
+      yes() {
       },
-      no: function () {
-        test.ok(true);
-        test.done();
+      no() {
+        expect(true).to.be.ok;
       }
     });
-  }
+  });
 
-};
+});

@@ -1,24 +1,22 @@
-var setTitle = require('../../src/factories/setWindowTitle');
+import setTitle from '../../src/factories/setWindowTitle';
+import { expect } from 'chai';
 
-module.exports = {
+describe('setWindowTitle()', function () {
 
-  setUp: function (callback) {
+  beforeEach(function () {
     global.document = {};
-    callback();
-  },
+  });
 
-  tearDown: function (callback) {
+  afterEach(function () {
     delete global.document;
-    callback();
-  },
+  });
 
-  setTitle: function (test) {
-    var action = setTitle('Home - My App');
+  it('should set the window title', function () {
+    const action = setTitle('Home - My App');
 
     action();
 
-    test.equal(document.title, 'Home - My App');
-    test.done();
-  }
+    expect(document.title).to.equal('Home - My App');
+  });
 
-};
+});

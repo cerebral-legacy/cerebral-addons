@@ -1,42 +1,43 @@
-var toggle = require('../../src/factories/toggle');
+import toggle from '../../src/factories/toggle';
+import counter, { expect, expectCount } from '../helpers/chaiCounter';
 
-module.exports = {
+beforeEach(counter.reset);
+afterEach(counter.check);
 
-  toggleTrueFalse: function (test) {
-    test.expect(3);
+describe('toggle()', function () {
 
-    var action = toggle('test');
+  it('should toggle true and false', function () {
+    expectCount(3);
+
+    const action = toggle('test');
 
     action({}, {
       get: function (path) {
-        test.equal(path, 'test');
+        expect(path).to.equal('test');
         return false;
       },
       set: function (path, value) {
-        test.equal(path, 'test');
-        test.equal(value, true);
-        test.done();
+        expect(path).to.equal('test');
+        expect(value).to.equal(true);
       }
     });
-  },
+  });
 
+  it('should toggle custom values', function () {
+    expectCount(3);
 
-  toggleCustomValues: function (test) {
-    test.expect(3);
-
-    var action = toggle('test', 'ON', 'OFF');
+    const action = toggle('test', 'ON', 'OFF');
 
     action({}, {
       get: function (path) {
-        test.equal(path, 'test');
+        expect(path).to.equal('test');
         return 'ON';
       },
       set: function (path, value) {
-        test.equal(path, 'test');
-        test.equal(value, 'OFF');
-        test.done();
+        expect(path).to.equal('test');
+        expect(value).to.equal('OFF');
       }
     });
-  }
+  });
 
-};
+});

@@ -1,96 +1,96 @@
-var timer = require('../../src/factories/timer');
+import timer from '../../src/factories/timer';
+import counter, { expect, expectCount } from '../helpers/chaiCounter';
 
-module.exports = {
+beforeEach(counter.reset);
+afterEach(counter.check);
 
-  timerWillTimeout: function (test) {
-    test.expect(2);
+describe('timer', function () {
 
-    var chain = timer.start('test', 1);
+  it('should timout', function (done) {
+    expectCount(2);
 
-    test.equal(chain.length, 2);
+    const chain = timer.start('test', 1);
+
+    expect(chain.length).to.equal(2);
 
     chain[0]({}, {}, {
       timeout: function () {
-        test.ok(true);
-        test.done();
+        expect(true).to.be.ok;
+        done();
       },
       cancel: function () {
-        test.done();
       }
     });
-  },
+  });
 
-  timerReturnsDefaultActionArrays: function (test) {
-    test.expect(2);
+  it('should return default action arrays', function () {
+    expectCount(2);
 
-    var chain = timer.start('test', 1);
+    const chain = timer.start('test', 1);
 
-    test.equal(chain.length, 2);
-    test.deepEqual(chain[1], {
+    expect(chain.length).to.equal(2);
+    expect(chain[1]).to.eql({
       timeout: [],
       cancel: []
     });
-    test.done();
-  },
+  });
 
-  timerReturnsTimerAndTimeoutActions: function (test) {
-    test.expect(2);
+  it('should return canel and timeout actions', function () {
+    expectCount(2);
 
-    var chain = timer.start('test', 1, {
+    const chain = timer.start('test', 1, {
       timeout: 'timeout',
       cancel: 'cancel'
     });
 
-    test.equal(chain.length, 2);
-    test.deepEqual(chain[1], {
+    expect(chain.length).to.equal(2);
+    expect(chain[1]).to.eql({
       timeout: 'timeout',
       cancel: 'cancel'
     });
-    test.done();
-  },
+  });
 
-  timerCanBeCancelled: function (test) {
-    test.expect(3);
+  it('can be cancelled', function () {
+    expectCount(3);
 
-    var chain = timer.start('test', 1000);
+    const chain = timer.start('test', 1000);
 
-    test.equal(chain.length, 2);
+    expect(chain.length).to.equal(2);
 
     chain[0]({}, {}, {
       timeout: function () {
       },
       cancel: function (input) {
-        test.equal(input.reason, 'becuase');
+        expect(input.reason).to.equal('becuase');
       }
     });
     timer.cancel('test', { reason: 'becuase' })[0]({}, {}, function () {
-      test.ok(true);
-      test.done();
+      expect(true).to.be.ok;
     });
-  },
+  });
 
-  timerCanBePausedAndRestarted: function (test) {
-    test.expect(4);
+  it('can be paused and resumed', function (done) {
+    expectCount(4);
 
-    var chain = timer.start('test', 1);
+    const chain = timer.start('test', 1);
 
-    test.equal(chain.length, 2);
+    expect(chain.length).to.equal(2);
 
     chain[0]({}, {}, {
       timeout: function () {
-        test.ok(true);
-        test.done();
+        expect(true).to.be.ok;
+        done();
       },
       cancel: function () {
       }
     });
 
     timer.pause('test')[0]({}, {}, function () {
-      test.ok(true);
+      expect(true).to.be.ok;
       timer.restart('test')[0]({}, {}, function () {
-        test.ok(true);
+        expect(true).to.be.ok;
       });
-    })
-  }
+    });
+  });
 
-};
+});
