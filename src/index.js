@@ -8,5 +8,6 @@ module.exports = {
   timeout: require('./factories/timeout.js'),
   timer: require('./factories/timer.js'),
   toggle: require('./factories/toggle.js'),
+  validate: require('./factories/validation.js'),
   when: require('./factories/when.js')
 };
