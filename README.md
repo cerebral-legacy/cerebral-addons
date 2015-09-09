@@ -20,7 +20,7 @@ signal('settingsOpened',
 ```
 
 #### copyStateToOutput
-Copies a propty of the store to the output of the action
+Copies a property of the store to the output of the action
 
 * `copyStateToOutput(statePath, outputPath)`
 
@@ -189,3 +189,14 @@ signal('securePageOpened',
     isUnknown: [redirectToHome]
   }
 );
+```
+
+## Contribute
+
+Fork repo
+
+* `npm install`
+* `npm run dev` runs dev mode which watches for changes and auto lints, tests and builds
+* `npm test` runs the tests
+* `npm run lint` lints the code
+* `npm run build` compiles es6 to es5
