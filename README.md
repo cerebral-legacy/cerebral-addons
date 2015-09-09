@@ -19,6 +19,23 @@ signal('settingsOpened',
 );
 ```
 
+#### copyStateToOutput
+Copies a propty of the store to the output of the action
+
+* `copyStateToOutput(statePath, outputPath)`
+
+```js
+signal('newAccountCreated',
+  copyStateToOutput('newAccount', ['postData', 'newAccount']),
+  [
+    ajax.post({ url: '/new-account', inputDataPath: 'postData' }), {
+      success: []
+      error: []
+    }
+  ]
+);
+```
+
 #### logState
 ```js
 signal('fieldUpdated',
