@@ -7,7 +7,7 @@ Copies a property of the action input to the store, nested paths are supported b
 * `copyInputToState(inputPath, statePath)`
 
 ```js
-signal('settingsOpened',
+signal('settingsOpened', [
   [
     getServerSettings, {
       success: [
@@ -16,7 +16,7 @@ signal('settingsOpened',
       error: []
     }
   ]
-);
+]);
 ```
 
 #### copyStateToOutput
@@ -25,7 +25,7 @@ Copies a property of the store to the output of the action
 * `copyStateToOutput(statePath, outputPath)`
 
 ```js
-signal('newAccountCreated',
+signal('newAccountCreated', [
   copyStateToOutput('newAccount', ['postData', 'newAccount']),
   [
     ajax.post({ url: '/new-account', inputDataPath: 'postData' }), {
@@ -33,7 +33,7 @@ signal('newAccountCreated',
       error: []
     }
   ]
-);
+]);
 ```
 
 #### resetState
@@ -43,9 +43,9 @@ signal('newAccountCreated',
 
 ```js
 // reset the whole store
-signal('signedOut',
+signal('signedOut', [
   resetState(controller)
-);
+]);
 
 // in order to reset individual nodes of the store it is first
 // necessary to store the initial state during the controller setup
@@ -59,9 +59,9 @@ let controller = Controller(Model(state), services);
 controller.store.initialState = state;
 
 // then you can reset parts of the store
-signal('formResetClicked',
+signal('formResetClicked', [
   resetState(controller, 'form')
-);
+]);
 ```
 
 #### set
@@ -69,14 +69,14 @@ signal('formResetClicked',
 * `set(statePath, value)`
 
 ```js
-signal('optionsFormOpened',
+signal('optionsFormOpened', [
   set('isLoading', 'true'),
   [getOptionsFromServer, {
     success: [],
     error: []
   }],
   set('isLoading', 'false')
-);
+]);
 ```
 
 #### setWindowTitle
@@ -84,17 +84,17 @@ signal('optionsFormOpened',
 * `setWindowTitle(title)`
 
 ```js
-signal('optionsFormOpened',
+signal('optionsFormOpened', [
   setWindowTitle('Options - Cerebral App')
-);
+]);
 ```
 
 #### timeout (async)
 ```js
 // Run a single action
-signal('appMounted',
+signal('appMounted', [
   timeout(1000, myAction)
-);
+]);
 
 // Run a chain
 signal('appMounted',
@@ -102,12 +102,12 @@ signal('appMounted',
 );
 
 // Run async parallell
-signal('appMounted',
+signal('appMounted', [
   [
     otherAsyncAction,
     ...timeout(1000, myAction)
   ]
-);
+]);
 ```
 
 #### timer
@@ -124,17 +124,17 @@ Timer consistes of 4 action factories, they are all async so that they are skipp
 Simple case:
 
 ```js
-signal('messageReceived',
+signal('messageReceived', [
   showMessageToUser,
   timer.start('message', 5000),
   hideMessageFromUser
-);
+]);
 ```
 
 More complex case:
 
 ```js
-signal('messageReceived',
+signal('messageReceived', [
   showMessageToUser,
   timer.start('message', 5000, {
     timeout: [
@@ -145,21 +145,21 @@ signal('messageReceived',
     ]
   }),
   hideMessageFromUser
-);
+]);
 
-signal('mouseHoveredOverMessage',
+signal('mouseHoveredOverMessage', [
   timer.pause('message')
-);
+]);
 
-signal('mouseOutMessage',
+signal('mouseOutMessage', [
   timer.restart('message')
-);
+]);
 
-signal('userDismissedMessage',
+signal('userDismissedMessage', [
   // any data passed in the optional second parameter will
   // be forwarded to the onCancelAction input
   timer.cancel('message', optionalData)
-);
+]);
 ```
 
 #### toggle
@@ -168,14 +168,14 @@ signal('userDismissedMessage',
 
 ```js
 // toggle the menu between true and false
-signal('menuToggled',
+signal('menuToggled', [
   toggle('menu')
-);
+]);
 
 // toggle the switch between "On" and "Off"
-signal('switchToggled',
+signal('switchToggled', [
   toggle('switch', 'On', 'Off')
-);
+]);
 ```
 
 #### unset
@@ -183,9 +183,9 @@ signal('switchToggled',
 * `unset(statePath)`
 
 ```js
-signal('itemDeleted',
+signal('itemDeleted', [
   unset('item')
-);
+]);
 
 #### validation
 
@@ -228,17 +228,17 @@ The password valdation comes with some reasonable defaults, but can easily be cu
 `validate.check(statePath)` can be used to assert that all previous validation have passed before proceding with furter actions, `'validation'` will be pushed onto the statePath before running the check, so it works well when following a chain of validation actions.
 
 ```js
-controller.signal('signinEmailChanged',
+controller.signal('signinEmailChanged', [
   copyInputToState('value', ['signin', 'email']),
   validate.email(['signin', 'email'])
-);
+]);
 
-controller.signal('siginPasswordChanged',
+controller.signal('siginPasswordChanged', [
   copyInputToState('value', ['signin', 'password']),
   validate.required(['signin', 'password'])
-);
+]);
 
-controller.signal('signinRequested',
+controller.signal('signinRequested', [
   validate.email(['signin', 'email']),
   validate.required(['signin', 'password']),
   validate.check('signin'), {
@@ -258,7 +258,7 @@ controller.signal('signinRequested',
       showErrorMessage
     ]
   }
-);
+]);
 
 ```
 
@@ -269,12 +269,12 @@ controller.signal('signinRequested',
 ```js
 let whenUser = when('user', 'isLoggedIn', 'isUnknown');
 
-signal('securePageOpened',
+signal('securePageOpened', [
   whenUser, {
     isLoggedIn: [getPageData],
     isUnknown: [redirectToHome]
   }
-);
+]);
 ```
 
 ## Contribute
