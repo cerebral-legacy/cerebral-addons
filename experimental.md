@@ -51,6 +51,18 @@ signal('formResetClicked', [
 ]);
 ```
 
+#### resetStateExcept
+
+* `resetStateExcept(statePath, statePath, ...)` reset all state except for the values at the given state paths
+
+The same controller setup as resetState above is required.
+
+```js
+signal('loggedOut', [
+  resetStateExcept('publicData')
+]);
+```
+
 #### timeout (async)
 ```js
 // Run a single action
