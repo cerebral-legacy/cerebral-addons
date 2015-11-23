@@ -8,6 +8,12 @@ These actions can be use by importing via the following import statement:
 import { timer } from 'cerebral-addons/lib/experimental';
 ```
 
+validation is also dependant on the `email-validator` node module which will need to be manually installed:
+
+```js
+npm install email-validator
+```
+
 #### resetState
 
 * `resetState(controller)` reset the whole store
