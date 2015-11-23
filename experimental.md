@@ -51,16 +51,6 @@ signal('formResetClicked', [
 ]);
 ```
 
-#### setWindowTitle
-
-* `setWindowTitle(title)`
-
-```js
-signal('optionsFormOpened', [
-  setWindowTitle('Options - Cerebral App')
-]);
-```
-
 #### timeout (async)
 ```js
 // Run a single action
