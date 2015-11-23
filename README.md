@@ -36,18 +36,6 @@ signal('newAccountCreated',
 );
 ```
 
-#### logState
-
-* `logState(statePath)`
-
-```js
-signal('fieldUpdated',
-  logState('form'),
-  updateField,
-  logState('form')
-);
-```
-
 #### resetState
 
 * `resetState(controller)` reset the whole store
