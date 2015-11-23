@@ -190,6 +190,15 @@ signal('switchToggled',
 );
 ```
 
+#### unset
+
+* `unset(statePath)`
+
+```js
+signal('itemDeleted',
+  unset('item')
+);
+
 #### validation
 
 * `validate.email(statePath, { errorPath=null, errorKey=null})`
