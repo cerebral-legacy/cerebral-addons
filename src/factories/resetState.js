@@ -1,10 +1,12 @@
-export default function (controller, root) {
+import { getPathValue } from '../helpers/objectPath';
 
-  return function resetState(input, state) {
+export default function (root) {
+
+  return function resetState(input, state, output, { initialState }) {
     if (root) {
-      state.set(root, controller.store.initialState[root]);
+      state.set(root, getPathValue(initialState, root));
     } else {
-      controller.store.reset();
+      state.set(initialState);
     }
   };
 

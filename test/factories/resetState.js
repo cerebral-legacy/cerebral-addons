@@ -9,33 +9,34 @@ describe('resetState()', function () {
   it('should reset the store', function () {
     expectCount(1);
 
-    const action = resetState({
-      store: {
-        reset: function () {
-          expect(true).to.be.ok;
-        }
+    const action = resetState();
+
+    action({}, {
+      set: function (value) {
+        expect(value).to.eql({
+          node: 'test'
+        });
+      }
+    }, {}, {
+      initialState: {
+        node: 'test'
       }
     });
-
-    action();
   });
-
 
   it('should reset a store node', function () {
     expectCount(2);
 
-    const action = resetState({
-      store: {
-        initialState: {
-          node: 'test'
-        }
-      }
-    }, 'node');
+    const action = resetState('node');
 
     action({}, {
       set: function (path, value) {
         expect(path).to.equal('node');
         expect(value).to.equal('test');
+      }
+    }, {}, {
+      initialState: {
+        node: 'test'
       }
     });
   });

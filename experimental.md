@@ -16,29 +16,38 @@ npm install email-validator
 
 #### resetState
 
-* `resetState(controller)` reset the whole store
-* `resetState(controller, nodeName)` reset a node within the store
+* `resetState()` reset the whole store
+* `resetState(nodeName)` reset a node within the store
+
+`resetState` is depent on an `services.initialState` property being available. To set this up in your  controller do the following:
 
 ```js
-// reset the whole store
-signal('signedOut', [
-  resetState(controller)
-]);
-
-// in order to reset individual nodes of the store it is first
-// necessary to store the initial state during the controller setup
-let state = {
+// the initial state of the app
+const state = {
   isLoading: false,
   form: {
     initialValue: 1
   }
 };
-let controller = Controller(Model(state), services);
-controller.store.initialState = state;
 
-// then you can reset parts of the store
+// services which are passed to actions
+const services = {
+  // initial state used by reset action
+  initialState: state
+};
+
+export default Controller(Model(state), services);
+```
+
+```js
+// reset the whole store
+signal('signedOut', [
+  resetState()
+]);
+
+// reset parts of the store
 signal('formResetClicked', [
-  resetState(controller, 'form')
+  resetState('form')
 ]);
 ```
 
