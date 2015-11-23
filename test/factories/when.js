@@ -47,7 +47,7 @@ describe('when()', function () {
   it('should call customTrue when true', function () {
     expectCount(2);
 
-    const action = when('test', 'yes', 'no');
+    const action = when('test', { yes: true, no: when.otherwise });
 
     action({}, {
       get(path) {
@@ -66,7 +66,7 @@ describe('when()', function () {
   it('should call customFalse when false', function () {
     expectCount(2);
 
-    const action = when('test', 'yes', 'no');
+    const action = when('test', { yes: true, no: when.otherwise });
 
     action({}, {
       get(path) {

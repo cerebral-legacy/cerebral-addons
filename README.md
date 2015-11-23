@@ -264,15 +264,47 @@ controller.signal('signinRequested', [
 
 #### when
 
-* `when(statePath, truePath='isTrue', falsePath='isFalse')`
+When can be used to check state for a specific value, truthy or falsy and then run an action chain when the condition is matched.
+
+* `when(statePath, outputs={ isTrue: when.truthy, isFalse: when.otherwise }, emptyObjectsAreFalse=true)`
+
+when exports the folowing symbols
+
+* `when.truthy`
+* `when.falsy`
+* `when.otherwise`
 
 ```js
-let whenUser = when('user', 'isLoggedIn', 'isUnknown');
+// simple when using default outputs
+signal('reloadData', [
+  when('isLoading'), {
+    isTrue: [tryAgainLater],
+    isFalse: [doReload]
+  }
+]);
+```
+
+```js
+// create custom output path names
+let whenUser = when('user', { isLoggedIn: when.truthy, isUnknown: when.otherwise });
 
 signal('securePageOpened', [
   whenUser, {
     isLoggedIn: [getPageData],
     isUnknown: [redirectToHome]
+  }
+]);
+```
+
+```js
+// check for specific values
+let whenFormIsValid = when(['form', 'errorMessage'], { valid: 'no errors found', invalid: when.otherwise });
+
+signal('formSubmitted', [
+  validateForm,
+  whenFormIsValid, {
+    valid: [sendToServer],
+    invalid: [showErrorSnackBarMessage]
   }
 ]);
 ```
