@@ -10,41 +10,6 @@ import { set, unset } from 'cerebral-addons';
 
 ## Action Factories
 
-#### copyInputToState
-Copies a property of the action input to the store, nested paths are supported by using `['parent', 'child']` syntax.
-
-* `copyInputToState(inputPath, statePath)`
-
-```js
-signal('settingsOpened', [
-  [
-    getServerSettings, {
-      success: [
-        copyInputToState('serverSettings', ['settings'])
-      ]
-      error: []
-    }
-  ]
-]);
-```
-
-#### copyStateToOutput
-Copies a property of the store to the output of the action
-
-* `copyStateToOutput(statePath, outputPath)`
-
-```js
-signal('newAccountCreated', [
-  copyStateToOutput(['newAccount'], ['postData', 'newAccount']),
-  [
-    ajax.post({ url: '/new-account', inputDataPath: 'postData' }), {
-      success: []
-      error: []
-    }
-  ]
-]);
-```
-
 #### set
 
 * `set(statePath, value)`
@@ -130,6 +95,41 @@ signal('formSubmitted', [
     valid: [sendToServer],
     invalid: [showErrorSnackBarMessage]
   }
+]);
+```
+
+#### copyInputToState
+Copies a property of the action input to the store, nested paths are supported by using `['parent', 'child']` syntax.
+
+* `copyInputToState(inputPath, statePath)`
+
+```js
+signal('settingsOpened', [
+  [
+    getServerSettings, {
+      success: [
+        copyInputToState('serverSettings', ['settings'])
+      ]
+      error: []
+    }
+  ]
+]);
+```
+
+#### copyStateToOutput
+Copies a property of the store to the output of the action
+
+* `copyStateToOutput(statePath, outputPath)`
+
+```js
+signal('newAccountCreated', [
+  copyStateToOutput(['newAccount'], ['postData', 'newAccount']),
+  [
+    ajax.post({ url: '/new-account', inputDataPath: 'postData' }), {
+      success: []
+      error: []
+    }
+  ]
 ]);
 ```
 
