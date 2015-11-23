@@ -125,7 +125,7 @@ Copies a property of the store to the output of the action
 signal('newAccountCreated', [
   copyStateToOutput(['newAccount'], ['postData', 'newAccount']),
   [
-    ajax.post({ url: '/new-account', inputDataPath: 'postData' }), {
+    ajax.post('/new-account'), {
       success: []
       error: []
     }
