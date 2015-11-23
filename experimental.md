@@ -14,6 +14,80 @@ validation is also dependant on the `email-validator` node module which will nee
 npm install email-validator
 ```
 
+#### ajax
+
+* `ajax.get(url='', inputUrlPath=null)`
+* `ajax.post(url='', inputUrlPath=null)`
+* `ajax.put(url='', inputUrlPath=null)`
+* `ajax.del(url='', inputUrlPath=null)`
+
+Each action will call either a `success` or `error` path, the response from the server will be passed as the input to the actions in the path.
+
+All ajax actions are dependent on `superagent` which should be provided to the action methods via `servcies.request`:
+
+```js
+import request from 'superagent';
+
+// ...
+
+const services = {
+  request
+};
+
+export default Controller(model, services);
+```
+
+To get data from the server:
+
+```js
+signal('pageOpened', [
+  [ajax.get('/api/pagedata'), {
+    success: [setPageData],
+    error: [setErrorMessage]
+  }]
+]);
+```
+
+To send data to the server:
+
+```js
+// the value at input.data will be posted to the server
+signal('pageSaved', [
+  [ajax.post('/api/pagedata'), {
+    success: [],
+    error: [setErrorMessage]
+  }]
+]);
+
+// to call the signal
+signals.pageSaved({ data: { pageData: 'send to server' } })
+```
+
+Of course the data can be extracted from the cerebral state also:
+
+```js
+signal('pageSaved', [
+  copyStateToOutput('pageData', ['data', 'pageData']),
+  [ajax.post('/api/pagedata'), {
+    success: [],
+    error: [setErrorMessage]
+  }]
+]);
+```
+
+To use a dynamic url:
+
+```js
+// put ['pageData'] to /api/pagedata/:id
+signal('pageSaved', [
+  copyStateToOutput('pageData', ['data', 'pageData']),
+  [ajax.put('/api/pagedata/', ['pageDate', 'id']), {
+    success: [],
+    error: [setErrorMessage]
+  }]
+]);
+```
+
 #### resetState
 
 * `resetState()` reset the whole store
