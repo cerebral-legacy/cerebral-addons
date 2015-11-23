@@ -20,7 +20,7 @@ signal('settingsOpened', [
   [
     getServerSettings, {
       success: [
-        copyInputToState('serverSettings', 'settings')
+        copyInputToState('serverSettings', ['settings'])
       ]
       error: []
     }
@@ -35,7 +35,7 @@ Copies a property of the store to the output of the action
 
 ```js
 signal('newAccountCreated', [
-  copyStateToOutput('newAccount', ['postData', 'newAccount']),
+  copyStateToOutput(['newAccount'], ['postData', 'newAccount']),
   [
     ajax.post({ url: '/new-account', inputDataPath: 'postData' }), {
       success: []
@@ -84,6 +84,7 @@ signal('switchToggled', [
 signal('itemDeleted', [
   unset('item')
 ]);
+```
 
 #### when
 
