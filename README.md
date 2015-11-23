@@ -110,7 +110,7 @@ signal('formSubmitted', [
 #### inputToState
 Copies a property of the action input to the store, nested paths are supported by using `['parent', 'child']` syntax.
 
-* `inputToState(inputPath, statePath)`
+* `inputToState(inputPath, statePath=inputPath)`
 
 ```js
 signal('settingsOpened', [
@@ -128,7 +128,7 @@ signal('settingsOpened', [
 #### stateToOutput
 Copies a property of the store to the output of the action
 
-* `stateToOutput(statePath, outputPath)`
+* `stateToOutput(statePath, outputPath=statePath)`
 
 ```js
 signal('newAccountCreated', [
