@@ -5,7 +5,7 @@ Use with caution, experimantal actions may be modified or removed in future vers
 These actions can be use by importing via the following import statement:
 
 ```js
-import { timer } from 'cerebral-addons/lib/experimental';
+import { timer } from 'cerebral-addons/experimental';
 ```
 
 validation is also dependant on the `email-validator` node module which will need to be manually installed:

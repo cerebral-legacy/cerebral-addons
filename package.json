@@ -2,7 +2,7 @@
   "name": "cerebral-addons",
   "version": "0.1.0",
   "description": "An actions and factories utility belt for Cerebral",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
     "lint": "eslint src test",
     "dev": "parallelshell 'babel src --watch --out-dir lib' 'watch --wait=1 \"eslint src test && mocha --compilers js:babel/register --recursive --reporter dot\" src test'",

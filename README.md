@@ -4,8 +4,17 @@ An actions and factories utility belt for Cerebral.
 
 ## Usage
 
+import all addons
+
 ```js
 import { set, unset } from 'cerebral-addons';
+```
+
+import individual addons
+
+```js
+import set from 'cerebral-addons/set';
+import unset from 'cerebral-addons/unset';
 ```
 
 ## Action Factories
