@@ -107,17 +107,17 @@ signal('formSubmitted', [
 ]);
 ```
 
-#### copyInputToState
+#### inputToState
 Copies a property of the action input to the store, nested paths are supported by using `['parent', 'child']` syntax.
 
-* `copyInputToState(inputPath, statePath)`
+* `inputToState(inputPath, statePath)`
 
 ```js
 signal('settingsOpened', [
   [
     getServerSettings, {
       success: [
-        copyInputToState('serverSettings', ['settings'])
+        inputToState('serverSettings', ['settings'])
       ]
       error: []
     }
@@ -125,14 +125,14 @@ signal('settingsOpened', [
 ]);
 ```
 
-#### copyStateToOutput
+#### stateToOutput
 Copies a property of the store to the output of the action
 
-* `copyStateToOutput(statePath, outputPath)`
+* `stateToOutput(statePath, outputPath)`
 
 ```js
 signal('newAccountCreated', [
-  copyStateToOutput(['newAccount'], ['postData', 'newAccount']),
+  stateToOutput(['newAccount'], ['postData', 'newAccount']),
   [
     ajax.post('/new-account'), {
       success: []

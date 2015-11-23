@@ -1,15 +1,15 @@
-import copyInputToState from '../../src/factories/copyInputToState';
+import inputToState from '../../src/factories/inputToState';
 import counter, { expect, expectCount } from '../helpers/chaiCounter';
 
 beforeEach(counter.reset);
 afterEach(counter.check);
 
-describe('copyInputToState()', function () {
+describe('inputToState()', function () {
 
   it('should copy a value', function () {
     expectCount(2);
 
-    const action = copyInputToState('node', 'node');
+    const action = inputToState('node', 'node');
 
     action({ node: 'test' }, {
       set: function (path, value) {
@@ -22,7 +22,7 @@ describe('copyInputToState()', function () {
   it('should copy a nested value', function () {
     expectCount(2);
 
-    const action = copyInputToState(['parent', 'node'], 'node');
+    const action = inputToState(['parent', 'node'], 'node');
 
     action({ parent: { node: 'test' } }, {
       set: function (path, value) {
