@@ -11,9 +11,11 @@ describe('unset()', function () {
 
     const action = unset('test');
 
-    action({}, {
-      unset: function (path) {
-        expect(path).to.equal('test');
+    action({
+      state: {
+        unset: function (path) {
+          expect(path).to.equal('test');
+        }
       }
     });
   });

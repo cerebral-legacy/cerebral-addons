@@ -6,7 +6,7 @@ export default function (statePath, outputPath) {
     outputPath = statePath;
   }
 
-  return function stateToOutput(input, state, output) {
+  return function stateToOutput({ input, state, output }) {
     let value = state.get(statePath);
     if (typeof value.toJS === 'function') {
       value = value.toJS();

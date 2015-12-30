@@ -11,16 +11,19 @@ describe('when()', function () {
 
     const action = when('test');
 
-    action({}, {
-      get(path) {
-        expect(path).to.equal('test');
-        return true;
-      }
-    }, {
-      isTrue() {
-        expect(true).to.be.ok;
+    action({
+      state: {
+        get(path) {
+          expect(path).to.equal('test');
+          return true;
+        }
       },
-      isFalse() {
+      output: {
+        isTrue() {
+          expect(true).to.be.ok;
+        },
+        isFalse() {
+        }
       }
     });
   });
@@ -30,16 +33,19 @@ describe('when()', function () {
 
     const action = when('test');
 
-    action({}, {
-      get(path) {
-        expect(path).to.equal('test');
-        return false;
-      }
-    }, {
-      isTrue() {
+    action({
+      state: {
+        get(path) {
+          expect(path).to.equal('test');
+          return false;
+        }
       },
-      isFalse() {
-        expect(true).to.be.ok;
+      output: {
+        isTrue() {
+        },
+        isFalse() {
+          expect(true).to.be.ok;
+        }
       }
     });
   });
@@ -49,16 +55,19 @@ describe('when()', function () {
 
     const action = when('test', { yes: true, no: when.otherwise });
 
-    action({}, {
-      get(path) {
-        expect(path).to.equal('test');
-        return true;
-      }
-    }, {
-      yes() {
-        expect(true).to.be.ok;
+    action({
+      state: {
+        get(path) {
+          expect(path).to.equal('test');
+          return true;
+        }
       },
-      no() {
+      output: {
+        yes() {
+          expect(true).to.be.ok;
+        },
+        no() {
+        }
       }
     });
   });
@@ -68,16 +77,19 @@ describe('when()', function () {
 
     const action = when('test', { yes: true, no: when.otherwise });
 
-    action({}, {
-      get(path) {
-        expect(path).to.equal('test');
-        return false;
-      }
-    }, {
-      yes() {
+    action({
+      state: {
+        get(path) {
+          expect(path).to.equal('test');
+          return false;
+        }
       },
-      no() {
-        expect(true).to.be.ok;
+      output: {
+        yes() {
+        },
+        no() {
+          expect(true).to.be.ok;
+        }
       }
     });
   });

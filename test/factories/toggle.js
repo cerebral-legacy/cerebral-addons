@@ -11,14 +11,16 @@ describe('toggle()', function () {
 
     const action = toggle('test');
 
-    action({}, {
-      get: function (path) {
-        expect(path).to.equal('test');
-        return false;
-      },
-      set: function (path, value) {
-        expect(path).to.equal('test');
-        expect(value).to.equal(true);
+    action({
+      state: {
+        get: function (path) {
+          expect(path).to.equal('test');
+          return false;
+        },
+        set: function (path, value) {
+          expect(path).to.equal('test');
+          expect(value).to.equal(true);
+        }
       }
     });
   });
@@ -28,14 +30,16 @@ describe('toggle()', function () {
 
     const action = toggle('test', 'ON', 'OFF');
 
-    action({}, {
-      get: function (path) {
-        expect(path).to.equal('test');
-        return 'ON';
-      },
-      set: function (path, value) {
-        expect(path).to.equal('test');
-        expect(value).to.equal('OFF');
+    action({
+      state: {
+        get: function (path) {
+          expect(path).to.equal('test');
+          return 'ON';
+        },
+        set: function (path, value) {
+          expect(path).to.equal('test');
+          expect(value).to.equal('OFF');
+        }
       }
     });
   });

@@ -11,10 +11,12 @@ describe('set()', function () {
 
     const action = set('test', 'XYZ');
 
-    action({}, {
-      set: function (path, value) {
-        expect(path).to.equal('test');
-        expect(value).to.equal('XYZ');
+    action({
+      state: {
+        set: function (path, value) {
+          expect(path).to.equal('test');
+          expect(value).to.equal('XYZ');
+        }
       }
     });
   });

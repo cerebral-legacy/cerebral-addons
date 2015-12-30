@@ -2,8 +2,8 @@ const truthy = Symbol('truthy');
 const falsy = Symbol('falsy');
 const otherwise = Symbol('otherwise');
 
-function when(statePath, outputs={ isTrue: truthy, isFalse: otherwise }, emptyObjectsAreFalse=true) {
-  let action = function when(input, state, output) {
+function when (statePath, outputs = { isTrue: truthy, isFalse: otherwise }, emptyObjectsAreFalse = true) {
+  let action = function when ({ state, output }) {
     let value = state.get(statePath);
 
     // treat objects with no keys as falsy
@@ -19,8 +19,8 @@ function when(statePath, outputs={ isTrue: truthy, isFalse: otherwise }, emptyOb
         return false;
       } else {
         return (test === value) ||
-          (test === truthy && value) ||
-          (test === falsy && !value);
+        (test === truthy && value) ||
+        (test === falsy && !value);
       }
     });
 

@@ -11,10 +11,13 @@ describe('inputToState()', function () {
 
     const action = inputToState('node', 'node');
 
-    action({ node: 'test' }, {
-      set: function (path, value) {
-        expect(path).to.equal('node');
-        expect(value).to.equal('test');
+    action({
+      input: { node: 'test' },
+      state: {
+        set: function (path, value) {
+          expect(path).to.equal('node');
+          expect(value).to.equal('test');
+        }
       }
     });
   });
@@ -24,10 +27,13 @@ describe('inputToState()', function () {
 
     const action = inputToState(['parent', 'node'], 'node');
 
-    action({ parent: { node: 'test' } }, {
-      set: function (path, value) {
-        expect(path).to.equal('node');
-        expect(value).to.equal('test');
+    action({
+      input: { parent: { node: 'test' } },
+      state: {
+        set: function (path, value) {
+          expect(path).to.equal('node');
+          expect(value).to.equal('test');
+        }
       }
     });
   });

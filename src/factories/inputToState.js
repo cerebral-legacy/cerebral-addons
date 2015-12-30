@@ -6,7 +6,7 @@ export default function (inputPath, statePath) {
     statePath = inputPath;
   }
 
-  return function inputToState(input, state) {
+  return function inputToState({ input, state }) {
     state.set(statePath, getPathValue(input, inputPath));
   };
 

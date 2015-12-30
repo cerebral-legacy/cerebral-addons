@@ -11,13 +11,17 @@ describe('stateToOutput()', function () {
 
     const action = stateToOutput('node', 'newNode');
 
-    action({ node: 'test' }, {
-      get(path) {
-        expect(path).to.equal('node');
-        return '123';
+    action({
+      input: { node: 'test' },
+      state: {
+        get(path) {
+          expect(path).to.equal('node');
+          return '123';
+        }
+      },
+      output(output) {
+        expect(output).to.eql({ node: 'test', newNode: '123' });
       }
-    }, function (output) {
-      expect(output).to.eql({ node: 'test', newNode: '123' });
     });
   });
 
@@ -26,21 +30,25 @@ describe('stateToOutput()', function () {
 
     const action = stateToOutput(['parent', 'node'], ['parent', 'child']);
 
-    action({}, {
-      get(path) {
-        expect(path).to.eql(['parent', 'node']);
-        return {
-          node: 'value'
-        };
-      }
-    }, function (output) {
-      expect(output).to.eql({
-        parent: {
-          child: {
+    action({
+      input: {},
+      state: {
+        get(path) {
+          expect(path).to.eql(['parent', 'node']);
+          return {
             node: 'value'
-          }
+          };
         }
-      });
+      },
+      output(output) {
+        expect(output).to.eql({
+          parent: {
+            child: {
+              node: 'value'
+            }
+          }
+        });
+      }
     });
   });
 
