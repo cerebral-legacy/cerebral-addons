@@ -142,10 +142,6 @@ signal('newAccountCreated', [
 ]);
 ```
 
-## Experimental Actions
-
-There are also a number of [experimental actions](experimental.md).
-
 ## Contribute
 
 Fork repo
