@@ -1,97 +1,96 @@
-import when from '../../src/factories/when';
-import counter, { expect, expectCount } from '../helpers/chaiCounter';
+/*global beforeEach,afterEach,describe,it*/
+import when from '../../src/factories/when'
+import { reset, check, expect, expectCount } from '../helpers/chaiCounter'
 
-beforeEach(counter.reset);
-afterEach(counter.check);
+beforeEach(reset)
+afterEach(check)
 
 describe('when()', function () {
-
   it('should call isTrue when true', function () {
-    expectCount(2);
+    expectCount(2)
 
-    const action = when('test');
+    const action = when('test')
 
     action({
       state: {
-        get(path) {
-          expect(path).to.equal('test');
-          return true;
+        get (path) {
+          expect(path).to.equal('test')
+          return true
         }
       },
       output: {
-        isTrue() {
-          expect(true).to.be.ok;
+        isTrue () {
+          expect(true).to.be.ok
         },
-        isFalse() {
+        isFalse () {
         }
       }
-    });
-  });
+    })
+  })
 
   it('should call isFalse when false', function () {
-    expectCount(2);
+    expectCount(2)
 
-    const action = when('test');
+    const action = when('test')
 
     action({
       state: {
-        get(path) {
-          expect(path).to.equal('test');
-          return false;
+        get (path) {
+          expect(path).to.equal('test')
+          return false
         }
       },
       output: {
-        isTrue() {
+        isTrue () {
         },
-        isFalse() {
-          expect(true).to.be.ok;
+        isFalse () {
+          expect(true).to.be.ok
         }
       }
-    });
-  });
+    })
+  })
 
   it('should call customTrue when true', function () {
-    expectCount(2);
+    expectCount(2)
 
-    const action = when('test', { yes: true, no: when.otherwise });
+    const action = when('test', { yes: true, no: when.otherwise })
 
     action({
       state: {
-        get(path) {
-          expect(path).to.equal('test');
-          return true;
+        get (path) {
+          expect(path).to.equal('test')
+          return true
         }
       },
       output: {
-        yes() {
-          expect(true).to.be.ok;
+        yes () {
+          expect(true).to.be.ok
         },
-        no() {
+        no () {
         }
       }
-    });
-  });
+    })
+  })
 
   it('should call customFalse when false', function () {
-    expectCount(2);
+    expectCount(2)
 
-    const action = when('test', { yes: true, no: when.otherwise });
+    const action = when('test', { yes: true, no: when.otherwise })
 
     action({
       state: {
-        get(path) {
-          expect(path).to.equal('test');
-          return false;
+        get (path) {
+          expect(path).to.equal('test')
+          return false
         }
       },
       output: {
-        yes() {
+        yes () {
         },
-        no() {
-          expect(true).to.be.ok;
+        no () {
+          expect(true).to.be.ok
         }
       }
-    });
-  });
-
-});
+    })
+  })
+})

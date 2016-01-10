@@ -1,1 +1,1 @@
-module.exports = require('./lib/factories/when.js');
+module.exports = require('./lib/factories/when.js').default

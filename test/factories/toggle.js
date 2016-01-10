@@ -1,47 +1,46 @@
-import toggle from '../../src/factories/toggle';
-import counter, { expect, expectCount } from '../helpers/chaiCounter';
+/*global beforeEach,afterEach,describe,it*/
+import toggle from '../../src/factories/toggle'
+import { reset, check, expect, expectCount } from '../helpers/chaiCounter'
 
-beforeEach(counter.reset);
-afterEach(counter.check);
+beforeEach(reset)
+afterEach(check)
 
 describe('toggle()', function () {
-
   it('should toggle true and false', function () {
-    expectCount(3);
+    expectCount(3)
 
-    const action = toggle('test');
+    const action = toggle('test')
 
     action({
       state: {
-        get: function (path) {
-          expect(path).to.equal('test');
-          return false;
+        get (path) {
+          expect(path).to.equal('test')
+          return false
         },
-        set: function (path, value) {
-          expect(path).to.equal('test');
-          expect(value).to.equal(true);
+        set (path, value) {
+          expect(path).to.equal('test')
+          expect(value).to.equal(true)
         }
       }
-    });
-  });
+    })
+  })
 
   it('should toggle custom values', function () {
-    expectCount(3);
+    expectCount(3)
 
-    const action = toggle('test', 'ON', 'OFF');
+    const action = toggle('test', 'ON', 'OFF')
 
     action({
       state: {
-        get: function (path) {
-          expect(path).to.equal('test');
-          return 'ON';
+        get (path) {
+          expect(path).to.equal('test')
+          return 'ON'
         },
-        set: function (path, value) {
-          expect(path).to.equal('test');
-          expect(value).to.equal('OFF');
+        set (path, value) {
+          expect(path).to.equal('test')
+          expect(value).to.equal('OFF')
         }
       }
-    });
-  });
-
-});
+    })
+  })
+})

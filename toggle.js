@@ -1,1 +1,1 @@
-module.exports = require('./lib/factories/toggle.js');
+module.exports = require('./lib/factories/toggle.js').default

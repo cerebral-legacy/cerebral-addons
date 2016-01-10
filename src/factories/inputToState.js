@@ -1,13 +1,11 @@
-import { getPathValue } from '../helpers/objectPath';
+import { getPathValue } from '../helpers/objectPath'
 
 export default function (inputPath, statePath) {
-
   if (!statePath) {
-    statePath = inputPath;
+    statePath = inputPath
   }
 
-  return function inputToState({ input, state }) {
-    state.set(statePath, getPathValue(input, inputPath));
-  };
-
+  return function inputToState ({ input, state }) {
+    state.set(statePath, getPathValue(input, inputPath))
+  }
 }

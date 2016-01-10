@@ -1,1 +1,1 @@
-module.exports = require('./lib/factories/stateToOutput.js');
+module.exports = require('./lib/factories/stateToOutput.js').default
