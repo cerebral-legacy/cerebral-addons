@@ -1,7 +1,7 @@
 import { setPathValue } from './objectPath'
 import parseUrl from './parseUrl'
 
-export function compile (path) {
+export default function compile (path) {
   if (typeof path === 'string') {
     // check if the string is a url
     const url = parseUrl(path)

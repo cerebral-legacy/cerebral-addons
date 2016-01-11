@@ -1,5 +1,8 @@
-export default function (statePath) {
-  return function unset ({ state }) {
-    state.unset(statePath)
+import unsetCompiler from '../helpers/getValue'
+
+export default function (path) {
+  const unsetValue = unsetCompiler(path, 'unset')
+  return function unset (args) {
+    unsetValue(args)
   }
 }

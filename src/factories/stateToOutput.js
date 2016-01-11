@@ -1,6 +1,7 @@
 import { setPathValue } from '../helpers/objectPath'
 
 export default function (statePath, outputPath) {
+  console.warn('deprecation (cerebral-addons): please use copy() instead of stateToOutput()')
   if (!outputPath) {
     outputPath = statePath
   }

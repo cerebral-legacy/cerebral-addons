@@ -28,6 +28,25 @@ describe('when()', function () {
     })
   })
 
+  it('should call isTrue when input is true', function () {
+    expectCount(1)
+
+    const action = when('input:/test')
+
+    action({
+      input: {
+        test: true
+      },
+      output: {
+        isTrue () {
+          expect(true).to.be.ok
+        },
+        isFalse () {
+        }
+      }
+    })
+  })
+
   it('should call isFalse when false', function () {
     expectCount(2)
 
@@ -39,6 +58,25 @@ describe('when()', function () {
           expect(path).to.equal('test')
           return false
         }
+      },
+      output: {
+        isTrue () {
+        },
+        isFalse () {
+          expect(true).to.be.ok
+        }
+      }
+    })
+  })
+
+  it('should call isFalse when input is false', function () {
+    expectCount(1)
+
+    const action = when('input:/test')
+
+    action({
+      input: {
+        test: false
       },
       output: {
         isTrue () {

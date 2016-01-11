@@ -1,10 +1,12 @@
+import getCompiler from '../helpers/getValue'
 const truthy = Symbol('truthy')
 const falsy = Symbol('falsy')
 const otherwise = Symbol('otherwise')
 
-function when (statePath, outputs = { isTrue: truthy, isFalse: otherwise }, emptyObjectsAreFalse = true) {
-  let action = function when ({ state, output }) {
-    let value = state.get(statePath)
+function when (path, outputs = { isTrue: truthy, isFalse: otherwise }, emptyObjectsAreFalse = true) {
+  const getValue = getCompiler(path)
+  let action = function when (args) {
+    let value = getValue(args)
 
     // treat objects with no keys as falsy
     if (emptyObjectsAreFalse && value && typeof value === 'object' && Object.keys(value).length === 0) {
@@ -12,7 +14,7 @@ function when (statePath, outputs = { isTrue: truthy, isFalse: otherwise }, empt
     }
 
     let otherwisePath = null
-    let path = Object.keys(outputs).find(path => {
+    let outputPath = Object.keys(outputs).find(path => {
       let test = outputs[path]
       if (test === otherwise) {
         otherwisePath = path
@@ -24,7 +26,7 @@ function when (statePath, outputs = { isTrue: truthy, isFalse: otherwise }, empt
       }
     })
 
-    output[path || otherwisePath]()
+    args.output[outputPath || otherwisePath]()
   }
 
   action.outputs = Object.keys(outputs)

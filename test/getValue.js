@@ -1,5 +1,5 @@
 /*global beforeEach,afterEach,describe,it*/
-import { compile } from '../src/helpers/getValue'
+import compile from '../src/helpers/getValue'
 import { reset, check, expect, expectCount } from './helpers/chaiCounter'
 
 beforeEach(reset)
@@ -29,7 +29,7 @@ describe('getValue', function () {
 
     const getValue = compile(['state', 'key'])
 
-    expect(getValue.name).to.equal('get')
+    expect(getValue.name).to.equal('fnState')
 
     const value = getValue({
       state: {
@@ -48,7 +48,7 @@ describe('getValue', function () {
 
     const getValue = compile('state:/state.key')
 
-    expect(getValue.name).to.equal('getStateValue')
+    expect(getValue.name).to.equal('fnStateValue')
 
     const value = getValue({
       state: {
@@ -67,7 +67,7 @@ describe('getValue', function () {
 
     const getValue = compile('state://module/state.key')
 
-    expect(getValue.name).to.equal('getModuleStateValue')
+    expect(getValue.name).to.equal('fnModuleStateValue')
 
     const value = getValue({
       modules: {
@@ -88,7 +88,7 @@ describe('getValue', function () {
 
     const getValue = compile('state://./state.key')
 
-    expect(getValue.name).to.equal('getLocalModuleStateValue')
+    expect(getValue.name).to.equal('fnLocalModuleStateValue')
 
     const value = getValue({
       module: {

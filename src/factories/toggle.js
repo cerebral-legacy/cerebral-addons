@@ -1,6 +1,11 @@
-export default function (statePath, onValue = true, offValue = false) {
-  return function toggle ({ state }) {
-    let value = state.get(statePath)
-    state.set(statePath, value === onValue ? offValue : onValue)
+import getCompiler from '../helpers/getValue'
+import setCompiler from '../helpers/setValue'
+
+export default function (path, onValue = true, offValue = false) {
+  const getValue = getCompiler(path)
+  const setValue = setCompiler(path)
+  return function toggle (args) {
+    let value = getValue(args)
+    setValue(args, value === onValue ? offValue : onValue)
   }
 }
