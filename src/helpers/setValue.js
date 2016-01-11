@@ -22,7 +22,7 @@ export default function compile (path) {
         if (url.host === '.') {
           // set the value on the current module
           return function setLocalModuleStateValue ({ module }, value) {
-            return module.set(urlPath, value)
+            return module.state.set(urlPath, value)
           }
         } else if (url.host) {
           // set the value on the named module
@@ -31,7 +31,7 @@ export default function compile (path) {
             if (!module) {
               return console.error(`${path} : module was not found.`)
             }
-            return module.set(urlPath, value)
+            return module.state.set(urlPath, value)
           }
         } else {
           // set the value on the global state

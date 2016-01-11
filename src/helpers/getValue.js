@@ -16,7 +16,7 @@ export default function compile (path, fn = 'get') {
         if (url.host === '.') {
           // get the value from the current module
           return function fnLocalModuleStateValue ({ module }) {
-            return module[fn](urlPath)
+            return module.state[fn](urlPath)
           }
         } else if (url.host) {
           // get the value from the named module
@@ -25,7 +25,7 @@ export default function compile (path, fn = 'get') {
             if (!module) {
               return console.error(`${path} : module was not found.`)
             }
-            return module[fn](urlPath)
+            return module.state[fn](urlPath)
           }
         } else {
           // get the value from the global state
@@ -34,7 +34,7 @@ export default function compile (path, fn = 'get') {
           }
         }
       } else {
-        return console.error(`${path} : not supported by {fn}.`)
+        return console.error(`${path} : not supported by state.{fn}().`)
       }
     }
   }

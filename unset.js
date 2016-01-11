@@ -1,1 +1,1 @@
-module.exports = require('./lib/factories/unset.js').default
+module.exports = require('./lib/factories/unset').default

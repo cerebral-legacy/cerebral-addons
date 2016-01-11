@@ -1,1 +1,1 @@
-module.exports = require('./lib/factories/copy.js').default
+module.exports = require('./lib/factories/copy').default

@@ -1,1 +1,1 @@
-module.exports = require('./lib/factories/set.js').default
+module.exports = require('./lib/factories/set').default

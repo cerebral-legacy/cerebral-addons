@@ -1,1 +1,1 @@
-module.exports = require('./lib/factories/inputToState.js').default
+module.exports = require('./lib/factories/inputToState').default
