@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/christianalfoni/cerebral-addons.git"
+    "url": "git+https://github.com/cerebral/cerebral-addons.git"
   },
   "keywords": [
     "cerebral",
