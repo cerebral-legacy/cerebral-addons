@@ -103,6 +103,21 @@ signal('newAccountCreated', [
 ]);
 ```
 
+#### debounce
+
+* `debounce(time, continueChain, terminateChain = [])`
+
+debounce can be used to throttle signals or parts of signal, for example on keyboard activity.
+
+```js
+signal('fieldChanged', [
+  set('input:/value', 'state:/form.field'),
+  debounce(500, [
+    validateForm
+  ])
+]);
+```
+
 #### set
 
 * `set(path, value)`

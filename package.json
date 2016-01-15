@@ -1,6 +1,6 @@
 {
   "name": "cerebral-addons",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "An actions and factories utility belt for Cerebral",
   "main": "index.js",
   "scripts": {
