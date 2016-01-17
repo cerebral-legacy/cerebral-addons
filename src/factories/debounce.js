@@ -1,6 +1,6 @@
 const pending = {}
 
-export default function (time, continueChain, { terminateChain = [], immediate = true }) {
+export default function (time, continueChain, { terminateChain = [], immediate = true } = {}) {
   const id = Symbol('id')
 
   const timeout = function debounceTimeout () {
