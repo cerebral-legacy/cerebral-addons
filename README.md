@@ -1,4 +1,4 @@
-# cerebral-addons [![Build Status](https://secure.travis-ci.org/coryvirok/cerebral-addons.png?branch=master)](https://travis-ci.org/coryvirok/cerebral-addons)
+# cerebral-addons [![Build Status](https://secure.travis-ci.org/cerebral/cerebral-addons.png?branch=master)](https://travis-ci.org/cerebral/cerebral-addons)
 
 An actions and factories utility belt for Cerebral.
 
