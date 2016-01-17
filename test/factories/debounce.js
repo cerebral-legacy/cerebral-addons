@@ -123,4 +123,33 @@ describe('debounce()', function () {
       chain[0](args)
     }, 15)
   })
+
+  it('should respect defaults', function (done) {
+    expectCount(1)
+    let terminated = 0
+    let continued = 0
+
+    const chain = debounce(10, [])
+
+    const args = {
+      output: {
+        continue () {
+          continued++
+          if (continued === 2) {
+            expect(terminated).to.equal(3)
+            done()
+          }
+        },
+        terminate () {
+          terminated++
+        }
+      }
+    }
+
+    chain[0](args)
+    chain[0](args)
+    chain[0](args)
+    chain[0](args)
+    chain[0](args)
+  })
 })
