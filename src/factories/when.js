@@ -14,17 +14,22 @@ function when (path, outputs = { isTrue: truthy, isFalse: otherwise }, emptyObje
     }
 
     let otherwisePath = null
-    let outputPath = Object.keys(outputs).find(path => {
-      let test = outputs[path]
+    let outputPath
+    let test
+
+    for (let path in outputs) {
+      test = outputs[path]
       if (test === otherwise) {
         otherwisePath = path
-        return false
       } else {
-        return (test === value) ||
-        (test === truthy && value) ||
-        (test === falsy && !value)
+        if ((test === value) ||
+            (test === truthy && value) ||
+            (test === falsy && !value)) {
+          outputPath = path
+          break
+        }
       }
-    })
+    }
 
     args.output[outputPath || otherwisePath]()
   }

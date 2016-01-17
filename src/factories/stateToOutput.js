@@ -10,7 +10,7 @@ export default function (statePath, outputPath) {
     let value = state.get(statePath)
     if (typeof value.toJS === 'function') {
       value = value.toJS()
-    } else if (Object.isFrozen(value)) {
+    } else if (value && value.constructor === Object && Object.isFrozen(value)) {
       value = JSON.parse(JSON.stringify(value))
     }
     setPathValue(input, outputPath, value)

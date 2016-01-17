@@ -12,7 +12,7 @@ export default function compile (path) {
         return function setOutputValue ({ input, output }, value) {
           const outputValue = (typeof value.toJS === 'function')
             ? value.toJS()
-            : Object.isFrozen(value)
+            : (value && value.constructor === Object && Object.isFrozen(value))
               ? JSON.parse(JSON.stringify(value))
               : value
           setPathValue(input, urlPath, outputValue)
