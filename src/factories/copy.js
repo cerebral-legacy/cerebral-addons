@@ -1,5 +1,6 @@
 import getCompiler from '../helpers/getValue'
 import setCompiler from '../helpers/setValue'
+import toDisplayName from '../helpers/toDisplayName'
 
 export default function (fromPath, toPath) {
   const getValue = getCompiler(fromPath)
@@ -10,7 +11,7 @@ export default function (fromPath, toPath) {
     setValue(args, value)
   }
 
-  copy.displayName = `copy(${JSON.stringify(fromPath)}, ${JSON.stringify(toPath)})`
+  copy.displayName = `copy(${toDisplayName(fromPath, getValue)}, ${JSON.stringify(toPath)})`
 
   return copy
 }

@@ -38,10 +38,12 @@ export default function compile (path, fn = 'get') {
       }
     }
   } else if (typeof path === 'function') {
-    return function fnOperator (args) {
+    const fnOperator = function fnOperator (args) {
       // first call resolves the operators, second call resolves the values
       return path(args)(args)
     }
+    fnOperator.displayName = path.displayName
+    return fnOperator
   }
   // non-strings and non-urls (probably an array) are passed through to state.get
   return function fnState ({ state }) {

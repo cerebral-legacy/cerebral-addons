@@ -1,4 +1,5 @@
 import getCompiler from '../helpers/getValue'
+import toDisplayName from '../helpers/toDisplayName'
 const truthy = Symbol('truthy')
 const falsy = Symbol('falsy')
 const otherwise = Symbol('otherwise')
@@ -37,7 +38,7 @@ function when (path, outputs = { isTrue: truthy, isFalse: otherwise }, emptyObje
 
   action.outputs = Object.keys(outputs)
 
-  action.displayName = `when(${JSON.stringify(path)})`
+  action.displayName = `when(${toDisplayName(path, getValue)})`
 
   return action
 }
