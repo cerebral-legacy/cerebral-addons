@@ -4,14 +4,14 @@ const truthy = Symbol('truthy')
 const falsy = Symbol('falsy')
 const otherwise = Symbol('otherwise')
 
-function when (path, outputs = { isTrue: truthy, isFalse: otherwise }, emptyObjectsAreFalse = true) {
+function when (path, outputs = { isTrue: truthy, isFalse: otherwise }) {
   const getValue = getCompiler(path)
 
   let action = function when (args) {
     let value = getValue(args)
 
     // treat objects with no keys as falsy
-    if (emptyObjectsAreFalse && value && typeof value === 'object' && Object.keys(value).length === 0) {
+    if (value && typeof value === 'object' && Object.keys(value).length === 0) {
       value = false
     }
 
