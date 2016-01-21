@@ -52,6 +52,8 @@ export default function (time, continueChain, { terminateChain = [], immediate =
     'terminate'
   ]
 
+  debounce.displayName = `debounce(${time}, ...)`
+
   return [
     debounce, {
       continue: continueChain,

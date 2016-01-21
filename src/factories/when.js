@@ -5,6 +5,7 @@ const otherwise = Symbol('otherwise')
 
 function when (path, outputs = { isTrue: truthy, isFalse: otherwise }, emptyObjectsAreFalse = true) {
   const getValue = getCompiler(path)
+
   let action = function when (args) {
     let value = getValue(args)
 
@@ -35,6 +36,9 @@ function when (path, outputs = { isTrue: truthy, isFalse: otherwise }, emptyObje
   }
 
   action.outputs = Object.keys(outputs)
+
+  action.displayName = `when(${JSON.stringify(path)})`
+
   return action
 }
 
