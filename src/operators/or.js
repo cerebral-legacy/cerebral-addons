@@ -7,7 +7,7 @@ export default function (...paths) {
 
   const or = function or (args) {
     const getter = getters.find(getter => isTruthy(getter(args)))
-    return getter || (() => undefined)
+    return getter ? getter(args) : undefined
   }
 
   or.displayName = `or(${paths.map((path, index) => toDisplayName(path, getters[index])).join(', ')})`
