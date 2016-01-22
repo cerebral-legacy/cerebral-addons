@@ -6,17 +6,19 @@ export default function (fromPath, toPath) {
   const getValue = getCompiler(fromPath)
   const setValue = setCompiler(toPath)
 
-  const copyTo = (args, value) => {
+  const copyTo = (args, value, async) => {
     const response = setValue(args, value)
     if (response && response.then) {
       response.then(args.output.success).catch(args.output.error)
+    } else if (async) {
+      args.output.success()
     }
   }
 
   const copy = function copyFrom (args) {
     let value = getValue(args)
     if (value && value.then === 'function') {
-      value.then(val => copyTo(args, val)).catch(args.output.error)
+      value.then(val => copyTo(args, val, true)).catch(args.output.error)
     } else {
       copyTo(args, value)
     }
