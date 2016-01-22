@@ -8,7 +8,7 @@ export default function (path, onValue = true, offValue = false) {
 
   const toggleWrite = (args, value, async) => {
     const response = setValue(args, value === onValue ? offValue : onValue)
-    if (response && response.then) {
+    if (response && typeof response.then === 'function') {
       response.then(args.output.success).catch(args.output.error)
     } else if (async) {
       args.output.success()
@@ -17,7 +17,7 @@ export default function (path, onValue = true, offValue = false) {
 
   const toggle = function toggleRead (args) {
     let value = getValue(args)
-    if (value && value.then === 'function') {
+    if (value && typeof value.then === 'function') {
       value.then(val => toggleWrite(args, val, true)).catch(args.output.error)
     } else {
       toggleWrite(args, value)

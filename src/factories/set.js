@@ -6,7 +6,7 @@ export default function (path, value) {
 
   const set = function set (args) {
     const response = setValue(args, value)
-    if (response && response.then) {
+    if (response && typeof response.then === 'function') {
       response.then(args.output.success).catch(args.output.error)
     }
   }

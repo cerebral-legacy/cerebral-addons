@@ -8,7 +8,7 @@ export default function (fromPath, toPath) {
 
   const copyTo = (args, value, async) => {
     const response = setValue(args, value)
-    if (response && response.then) {
+    if (response && typeof response.then === 'function') {
       response.then(args.output.success).catch(args.output.error)
     } else if (async) {
       args.output.success()
@@ -17,7 +17,7 @@ export default function (fromPath, toPath) {
 
   const copy = function copyFrom (args) {
     let value = getValue(args)
-    if (value && value.then === 'function') {
+    if (value && typeof value.then === 'function') {
       value.then(val => copyTo(args, val, true)).catch(args.output.error)
     } else {
       copyTo(args, value)

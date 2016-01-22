@@ -36,7 +36,7 @@ function when (path, outputs = { isTrue: truthy, isFalse: otherwise }) {
 
   let action = function whenRead (args) {
     let value = getValue(args)
-    if (value && value.then === 'function') {
+    if (value && typeof value.then === 'function') {
       value.then(val => whenTest(args, val)).catch(error => {
         console.error(`${action.displayName} caught an error whilst getting a value to test`, error)
       })
