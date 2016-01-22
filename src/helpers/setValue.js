@@ -43,6 +43,8 @@ export default function compile (path) {
         return console.error(`${path} : scheme is not supported, expect "input" or "state".`)
       }
     }
+  } else if (typeof path === 'function') {
+    return path
   }
   // non-strings and non-urls (probably an array) are passed through to state.get
   return function set ({ state }, value) {
