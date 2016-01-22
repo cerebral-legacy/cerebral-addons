@@ -1,6 +1,6 @@
 {
   "name": "cerebral-addons",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "An actions and factories utility belt for Cerebral",
   "scripts": {
     "lint": "standard src/**/*.js test/**/*.js --verbose | snazzy",
