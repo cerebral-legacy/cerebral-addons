@@ -7,9 +7,7 @@ const otherwise = Symbol('otherwise')
 function when (path, outputs = { isTrue: truthy, isFalse: otherwise }) {
   const getValue = getCompiler(path)
 
-  let action = function when (args) {
-    let value = getValue(args)
-
+  const whenTest = (args, value) => {
     // treat objects with no keys as falsy
     if (value && typeof value === 'object' && Object.keys(value).length === 0) {
       value = false
@@ -34,6 +32,17 @@ function when (path, outputs = { isTrue: truthy, isFalse: otherwise }) {
     }
 
     args.output[outputPath || otherwisePath]()
+  }
+
+  let action = function whenRead (args) {
+    let value = getValue(args)
+    if (value && value.then === 'function') {
+      value.then(val => whenTest(args, val)).catch(error => {
+        console.error(`${action.displayName} caught an error whilst getting a value to test`, error)
+      })
+    } else {
+      whenTest(args, value)
+    }
   }
 
   action.outputs = Object.keys(outputs)
