@@ -4,6 +4,7 @@ import controller from './helpers/controller'
 import copy from '../src/factories/copy'
 import and from '../src/operators/and'
 import or from '../src/operators/or'
+import not from '../src/operators/not'
 
 controller.signalsSync({
   andTrue: [copy(and('t1', 't2'), 'output')],
@@ -15,7 +16,8 @@ controller.signalsSync({
   orTrue1: [copy(or('t1', 'f2'), 'output')],
   orTrue2: [copy(or('f1', 't2'), 'output')],
   nestedTrue: [copy(or('f1', and('t1', or('f2', 't2'))), 'output')],
-  nestedFalse: [copy(or('f1', and('t1', 'f2')), 'output')]
+  nestedFalse: [copy(or('f1', and('t1', 'f2')), 'output')],
+  not: [copy(not(or('f1', and('t1', or('f2', 't2')))), 'output')]
 })
 const signals = controller.getSignals()
 
@@ -77,6 +79,13 @@ describe('operators', function () {
     it('returns true when second false', function () {
       signals.orTrue2()
       expect(tree.get(['output'])).to.equal(2)
+    })
+  })
+
+  describe('not', function () {
+    it('returns false', function () {
+      signals.not()
+      expect(tree.get(['output'])).to.be.false
     })
   })
 
