@@ -159,7 +159,7 @@ signal('itemDeleted', [
 
 #### when
 
-When can be used to check input or state for a specific value, truthy or falsy and then run an action chain when the condition is matched.
+When can be used to check input or state for a specific value, truthy or falsy and then run an action chain when the condition is matched. To check multiple paths, see the operators section below.
 
 * `when(path, outputs={ isTrue: when.truthy, isFalse: when.otherwise }, emptyObjectsAreFalse=true)`
 
@@ -193,13 +193,123 @@ signal('securePageOpened', [
 
 ```js
 // check for specific values
-let whenFormIsValid = when(['state:/form', 'errorMessage'], { valid: 'no errors found', invalid: when.otherwise });
+let whenFormIsValid = when('state:/form.errorMessage', { valid: 'no errors found', invalid: when.otherwise });
 
 signal('formSubmitted', [
   validateForm,
   whenFormIsValid, {
     valid: [sendToServer],
     invalid: [showErrorSnackBarMessage]
+  }
+]);
+```
+
+## Operators
+
+In place of the data paths, cerebral-addons supports operators. There are two types of operators,
+a getter operator and a setter operator. If either of these operators is detected to by async
+(indicated by the returning of a promise) then the addon must be marked as async in the chain and
+subsequently define success and error paths.
+
+### getters
+
+A getter is a function that accepts the args passed to an action method and returns some value.
+
+```js
+// getter should return a value or a promise which will later resolve to a value
+[promise] getter(args)
+```
+
+#### Example
+an example getter might get some data from the server:
+```js
+// define the getter
+function httpGet(url) {
+  return function (args) {
+    return new Promise(resolve => {
+      getDataFromServer(url, function (err, data) {
+        resolve(data)
+      })
+    })
+  }
+}
+
+// use the getter
+[
+  copy(httpGet('/api/date.json'), 'state:/date'), {
+    success: [],
+    error: []
+  }
+]
+```
+
+### setters
+
+A setter is a function that accepts the args passed to an action method and the value to set.
+
+```js
+// if the setter returns a promise then the addon will wait for it to resolve before continuing
+[promise] setter(args, value)
+```
+
+if the setter is async then the addon will also pass on the resolve value to the success chain
+
+#### Example
+an example setter might post some data to the server:
+```js
+// define the setter
+function httpPost(url) {
+  return function (args, value) {
+    return new Promise(resolve => {
+      postDataToServer(url, value, function (err, data) {
+        resolve(data) // response from server will be passed onto success chain
+      })
+    })
+  }
+}
+
+// use the setter
+[
+  copy('state:/date', httpPost('/api/date.json')), {
+    success: [],
+    error: []
+  }
+]
+```
+
+### included getters
+
+cerebral-addons includes the following getters
+
+#### and
+
+```js
+signal('doSomethingWhenBothAreTrue', [
+  when(and('state:/firstCondition', 'input:/otherCondition')), {
+    isTrue: [],
+    isFalse: []
+  }
+]);
+```
+
+#### or
+
+```js
+signal('doSomethingWhenBothAreTrue', [
+  when(or('state:/firstCondition', 'input:/otherCondition')), {
+    isTrue: [],
+    isFalse: []
+  }
+]);
+```
+
+#### not
+
+```js
+signal('doSomethingWhenBothAreTrue', [
+  when(and('state:/firstCondition', not('input:/otherCondition'))), {
+    isTrue: [],
+    isFalse: []
   }
 ]);
 ```
