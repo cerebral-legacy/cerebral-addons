@@ -11,7 +11,7 @@ export default function (...paths) {
   }
 
   and.displayName = `and(${paths.map((path, index) => typeof path === 'function'
-    ? getters[index].displayName
+    ? getters[index].displayName || getters[index].name
     : JSON.stringify(path)).join(', ')})`
 
   return and
