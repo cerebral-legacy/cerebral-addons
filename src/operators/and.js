@@ -1,5 +1,6 @@
 import getCompiler from '../helpers/getValue'
 import isTruthy from '../helpers/isTruthy'
+import toDisplayName from '../helpers/toDisplayName'
 
 export default function (...paths) {
   const getters = paths.map(path => getCompiler(path))
@@ -10,9 +11,7 @@ export default function (...paths) {
       : undefined
   }
 
-  and.displayName = `and(${paths.map((path, index) => typeof path === 'function'
-    ? getters[index].displayName || getters[index].name
-    : JSON.stringify(path)).join(', ')})`
+  and.displayName = `and(${paths.map((path, index) => toDisplayName(path, getters[index])).join(', ')})`
 
   return and
 }

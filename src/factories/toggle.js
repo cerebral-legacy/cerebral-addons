@@ -1,5 +1,6 @@
 import getCompiler from '../helpers/getValue'
 import setCompiler from '../helpers/setValue'
+import toDisplayName from '../helpers/toDisplayName'
 
 export default function (path, onValue = true, offValue = false) {
   const getValue = getCompiler(path)
@@ -10,7 +11,7 @@ export default function (path, onValue = true, offValue = false) {
     setValue(args, value === onValue ? offValue : onValue)
   }
 
-  toggle.displayName = `toggle(${JSON.stringify(path)})`
+  toggle.displayName = `toggle(${toDisplayName(path, getValue)})`
 
   return toggle
 }

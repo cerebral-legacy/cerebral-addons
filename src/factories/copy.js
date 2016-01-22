@@ -11,7 +11,7 @@ export default function (fromPath, toPath) {
     setValue(args, value)
   }
 
-  copy.displayName = `copy(${toDisplayName(fromPath, getValue)}, ${JSON.stringify(toPath)})`
+  copy.displayName = `copy(${toDisplayName(fromPath, getValue)}, ${toDisplayName(toPath, setValue)})`
 
   return copy
 }

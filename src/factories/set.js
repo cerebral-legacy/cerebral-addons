@@ -1,4 +1,5 @@
 import setCompiler from '../helpers/setValue'
+import toDisplayName from '../helpers/toDisplayName'
 
 export default function (path, value) {
   const setValue = setCompiler(path)
@@ -7,7 +8,7 @@ export default function (path, value) {
     setValue(args, value)
   }
 
-  set.displayName = `set(${JSON.stringify(path)}, ${JSON.stringify(value)})`
+  set.displayName = `set(${toDisplayName(path, setValue)}, ${JSON.stringify(value)})`
 
   return set
 }
