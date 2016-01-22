@@ -4,14 +4,6 @@ An actions and factories utility belt for Cerebral.
 
 ## Usage
 
-import all addons
-
-```js
-import { set, unset } from 'cerebral-addons';
-```
-
-import individual addons
-
 ```js
 import set from 'cerebral-addons/set';
 import unset from 'cerebral-addons/unset';
@@ -171,7 +163,7 @@ When can be used to check input or state for a specific value, truthy or falsy a
 
 * `when(path, outputs={ isTrue: when.truthy, isFalse: when.otherwise }, emptyObjectsAreFalse=true)`
 
-when exports the folowing symbols
+when exports the following symbols
 
 * `when.truthy`
 * `when.falsy`
