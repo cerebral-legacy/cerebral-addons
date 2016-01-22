@@ -1,4 +1,4 @@
-import getCompiler from '../helpers/getValue'
+import getCompiler from 'cerebral-url-scheme-compiler/get'
 import toDisplayName from '../helpers/toDisplayName'
 const truthy = Symbol('truthy')
 const falsy = Symbol('falsy')

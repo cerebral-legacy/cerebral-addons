@@ -1,4 +1,4 @@
-import unsetCompiler from '../helpers/getValue'
+import unsetCompiler from 'cerebral-url-scheme-compiler/get'
 
 export default function (path) {
   const unsetValue = unsetCompiler(path, 'unset')

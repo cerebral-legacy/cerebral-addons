@@ -1,4 +1,4 @@
-import setCompiler from '../helpers/setValue'
+import setCompiler from 'cerebral-url-scheme-compiler/set'
 import toDisplayName from '../helpers/toDisplayName'
 
 export default function (path, value) {

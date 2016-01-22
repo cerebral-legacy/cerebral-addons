@@ -212,49 +212,6 @@ signal('formSubmitted', [
 ]);
 ```
 
-## Factory Helpers
-
-cerebral-addons exposes some helpers which can be useful for applications wishing to make use of some of
-same functionality used by cerebral-addons in their own actions.
-
-#### getCompiler
-
-converts a path URL, string or array into an efficient getter function
-
-```js
-import getCompiler from 'cerebral-addons/getCompiler';
-
-// some action factory
-export default function (fromPath) {
-  // "compile" the fromPath into a getValue function
-  const getValue = getCompiler(fromPath);
-  // return an action
-  return function myAction (args) {
-    let value = getValue(args);
-    // do something with value ...
-  }
-}
-```
-
-#### setCompiler
-
-converts a path URL, string or array into an efficient setter function
-
-```js
-import setCompiler from 'cerebral-addons/setCompiler';
-
-// some action factory
-export default function (toPath) {
-  // "compile" the toPath into a setValue function
-  const setValue = setCompiler(toPath);
-  // return an action
-  return function myAction (args) {
-    // do something to get the value
-    setValue(args, value);
-  }
-}
-```
-
 ## Contribute
 
 Fork repo
