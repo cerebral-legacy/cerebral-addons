@@ -95,6 +95,16 @@ signal('newAccountCreated', [
 ]);
 ```
 
+Copy also supports output chains which can be useful for filtering or other tasks. Any item in the chain can be async so long as it returns a promise, the copy helper will detect this and make the whole copy action async. (see setters below for more details)
+
+```js
+const plusOne = (args, value) => value + 1;
+
+signal('increment', [
+  copy('state://count', plusOne, 'state:/count'),
+]);
+```
+
 #### debounce
 
 * `debounce(time, continueChain, { terminateChain = [], immediate = true })`

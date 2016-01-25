@@ -12,7 +12,6 @@ describe('copy()', function () {
     const action = copy('from', 'to')
 
     action({
-      input: { node: 'test' },
       state: {
         get (path) {
           expect(path).to.equal('from')
@@ -114,6 +113,25 @@ describe('copy()', function () {
             }
           }
         })
+      }
+    })
+  })
+
+  it('chains outputs', function () {
+    expectCount(3)
+    const double = (args, value) => value * 2
+    const action = copy('from', double, 'to')
+
+    action({
+      state: {
+        get (path) {
+          expect(path).to.equal('from')
+          return 2
+        },
+        set (path, value) {
+          expect(path).to.equal('to')
+          expect(value).to.equal(4)
+        }
       }
     })
   })
