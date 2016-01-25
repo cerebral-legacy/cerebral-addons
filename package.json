@@ -42,7 +42,7 @@
     "standard": "^5.4.1",
     "watch": "^0.17.1"
   },
-  "peerDependencies": {
+  "dependencies": {
     "cerebral-url-scheme-compiler": "^0.3.0"
   }
 }
