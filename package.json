@@ -1,7 +1,8 @@
 {
   "name": "cerebral-addons",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "An actions and factories utility belt for Cerebral",
+  "main": "index.js",
   "scripts": {
     "lint": "standard src/**/*.js test/**/*.js --verbose | snazzy",
     "start": "parallelshell 'babel src --watch --out-dir lib' 'watch --wait=1 \"npm run lint --silent && mocha --compilers js:babel-core/register --recursive --reporter dot\" src test'",
