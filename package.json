@@ -1,6 +1,6 @@
 {
   "name": "cerebral-addons",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "An actions and factories utility belt for Cerebral",
   "main": "index.js",
   "scripts": {
@@ -43,6 +43,6 @@
     "watch": "^0.17.1"
   },
   "dependencies": {
-    "cerebral-url-scheme-compiler": "^0.3.2"
+    "cerebral-url-scheme-compiler": "^0.3.3"
   }
 }
