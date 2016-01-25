@@ -34,7 +34,6 @@
     "baobab": "^2.3.2",
     "cerebral": "^0.33.2",
     "cerebral-model-baobab": "^0.4.6",
-    "cerebral-url-scheme-compiler": "^0.3.0",
     "chai": "^3.4.1",
     "mocha": "^2.3.4",
     "parallelshell": "^2.0.0",
@@ -44,6 +43,6 @@
     "watch": "^0.17.1"
   },
   "dependencies": {
-    "cerebral-url-scheme-compiler": "^0.3.1"
+    "cerebral-url-scheme-compiler": "^0.3.2"
   }
 }
