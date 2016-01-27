@@ -324,6 +324,51 @@ signal('doSomethingWhenBothAreTrue', [
 ]);
 ```
 
+#### findWhere
+
+```js
+copy(findWhere('state:/users', { name: 'John' }), 'output:/john')
+```
+
+#### pop
+
+> pop also modifies the array in the state
+
+```js
+copy(pop('state:/users'), 'output:/lastUser')
+```
+
+
+#### shift
+
+> shift also modifies the array in the state
+
+```js
+copy(shift('state:/users'), 'output:/firstUser')
+```
+
+### Included setters
+
+cerebral-addons includes the following setters
+
+#### merge
+
+```js
+copy('input:/newData', merge('state:/allData'))
+```
+
+#### push
+
+```js
+copy('input:/newUser', push('state:/users'))
+```
+
+#### unshift
+
+```js
+copy('input:/newUser', unshift('state:/users'))
+```
+
 ## Contribute
 
 Fork repo
