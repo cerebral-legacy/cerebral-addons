@@ -7,18 +7,18 @@ import and from '../src/operators/and'
 import or from '../src/operators/or'
 import not from '../src/operators/not'
 
-controller.signalsSync({
-  andTrue: [copy(and('t1', 't2'), 'output')],
-  andFalse: [copy(and('f1', 'f2'), 'output')],
-  andFalse1: [copy(and('t1', 'f2'), 'output')],
-  andFalse2: [copy(and('f1', 't2'), 'output')],
-  orTrue: [copy(or('t1', 't2'), 'output')],
-  orFalse: [copy(or('f1', 'f2'), 'output')],
-  orTrue1: [copy(or('t1', 'f2'), 'output')],
-  orTrue2: [copy(or('f1', 't2'), 'output')],
-  nestedTrue: [copy(or('f1', and('t1', or('f2', 't2'))), 'output')],
-  nestedFalse: [copy(or('f1', and('t1', 'f2')), 'output')],
-  not: [copy(not(or('f1', and('t1', or('f2', 't2')))), 'output')]
+controller.addSignals({
+  andTrue: { chain: [copy(and('t1', 't2'), 'output')], sync: true },
+  andFalse: { chain: [copy(and('f1', 'f2'), 'output')], sync: true },
+  andFalse1: { chain: [copy(and('t1', 'f2'), 'output')], sync: true },
+  andFalse2: { chain: [copy(and('f1', 't2'), 'output')], sync: true },
+  orTrue: { chain: [copy(or('t1', 't2'), 'output')], sync: true },
+  orFalse: { chain: [copy(or('f1', 'f2'), 'output')], sync: true },
+  orTrue1: { chain: [copy(or('t1', 'f2'), 'output')], sync: true },
+  orTrue2: { chain: [copy(or('f1', 't2'), 'output')], sync: true },
+  nestedTrue: { chain: [copy(or('f1', and('t1', or('f2', 't2'))), 'output')], sync: true },
+  nestedFalse: { chain: [copy(or('f1', and('t1', 'f2')), 'output')], sync: true },
+  not: { chain: [copy(not(or('f1', and('t1', or('f2', 't2')))), 'output')], sync: true }
 })
 const signals = controller.getSignals()
 

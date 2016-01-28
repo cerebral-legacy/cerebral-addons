@@ -3,11 +3,11 @@ import { expect } from 'chai'
 import controller from '../helpers/controller'
 import copy from '../../src/factories/copy'
 
-controller.modules({
+controller.addModules({
   mod: module => {
-    module.signalsSync({
-      copyAll: [ copy('state://./', 'output') ],
-      replaceAll: [ copy('input:/', 'state://./') ]
+    module.addSignals({
+      copyAll: { chain: [ copy('state://./', 'output') ], sync: true },
+      replaceAll: { chain: [ copy('input:/', 'state://./') ], sync: true }
     })
   }
 })
