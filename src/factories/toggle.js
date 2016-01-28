@@ -1,6 +1,5 @@
 import getCompiler from 'cerebral-url-scheme-compiler/get'
 import setCompiler from 'cerebral-url-scheme-compiler/set'
-import toDisplayName from '../helpers/toDisplayName'
 
 export default function (path, onValue = true, offValue = false) {
   const getValue = getCompiler(path)
@@ -23,8 +22,6 @@ export default function (path, onValue = true, offValue = false) {
       toggleWrite(args, value)
     }
   }
-
-  toggle.displayName = `toggle(${toDisplayName(path, getValue)})`
 
   return toggle
 }

@@ -1,5 +1,4 @@
 import getCompiler from 'cerebral-url-scheme-compiler/get'
-import toDisplayName from '../helpers/toDisplayName'
 const truthy = Symbol('truthy')
 const falsy = Symbol('falsy')
 const otherwise = Symbol('otherwise')
@@ -46,8 +45,6 @@ function when (path, outputs = { isTrue: truthy, isFalse: otherwise }) {
   }
 
   action.outputs = Object.keys(outputs)
-
-  action.displayName = `when(${toDisplayName(path, getValue)})`
 
   return action
 }

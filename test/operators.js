@@ -99,9 +99,4 @@ describe('operators', function () {
     signals.nestedFalse()
     expect(tree.get(['output'])).to.be.undefined
   })
-
-  it('shows full details in the displayName', function () {
-    const displayName = copy(or(['f1'], and('t1', or('f2', 't2'))), 'output').displayName
-    expect(displayName).to.equal('copy(or(["f1"], and("t1", or("f2", "t2"))), "output")')
-  })
 })
