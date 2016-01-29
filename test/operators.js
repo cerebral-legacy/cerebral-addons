@@ -102,6 +102,6 @@ describe('operators', function () {
 
   it('shows full details in the displayName', function () {
     const displayName = copy(or(['f1'], and('t1', or('f2', 't2'))), 'output').displayName
-    expect(displayName).to.equal('copy(or(["f1"], and("t1", or("f2", "t2"))), "output")')
+    expect(displayName).to.equal('addons.copy(or(["f1"], and("t1", or("f2", "t2"))), "output")')
   })
 })
