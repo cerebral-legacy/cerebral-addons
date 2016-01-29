@@ -11,7 +11,7 @@ export default function (path, value) {
     }
   }
 
-  set.displayName = `set(${toDisplayName(path, setValue)}, ${JSON.stringify(value)})`
+  set.displayName = `addons.set(${toDisplayName(path, setValue)}, ${JSON.stringify(value)})`
 
   return set
 }

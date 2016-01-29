@@ -52,7 +52,7 @@ export default function (time, continueChain, { terminateChain = [], immediate =
     'terminate'
   ]
 
-  debounce.displayName = `debounce(${time}, ...)`
+  debounce.displayName = `addons.debounce(${time}, ...)`
 
   return [
     debounce, {

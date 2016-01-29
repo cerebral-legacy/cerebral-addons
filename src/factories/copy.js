@@ -30,7 +30,7 @@ export default function (fromPath, ...toPaths) {
     }
   }
 
-  copy.displayName = `copy(${toDisplayName(fromPath, getValue)}, ${toPaths.map((path, index) =>
+  copy.displayName = `addons.copy(${toDisplayName(fromPath, getValue)}, ${toPaths.map((path, index) =>
     toDisplayName(path, setValues[index])).join(', ')})`
 
   return copy
