@@ -7,5 +7,7 @@ export default function (path) {
     unsetValue(args)
   }
 
+  unset.displayName = `unset(${JSON.stringify(path)})`
+
   return unset
 }

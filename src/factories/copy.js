@@ -1,5 +1,6 @@
 import getCompiler from 'cerebral-url-scheme-compiler/get'
 import setCompiler from 'cerebral-url-scheme-compiler/set'
+import toDisplayName from '../helpers/toDisplayName'
 
 export default function (fromPath, ...toPaths) {
   const getValue = getCompiler(fromPath)
@@ -29,8 +30,8 @@ export default function (fromPath, ...toPaths) {
     }
   }
 
-  copy.displayName = `copy(${getValue.displayName || getValue.name}, ${setValues.map(setValue =>
-    setValue.displayName || setValue.name).join(', ')})`
+  copy.displayName = `copy(${toDisplayName(fromPath, getValue)}, ${toPaths.map((path, index) =>
+    toDisplayName(path, setValues[index])).join(', ')})`
 
   return copy
 }
