@@ -24,9 +24,8 @@ where `scheme` can be one of:
 * `state` - (readwrite)
 * `output` - (writeonly)
 
-the optional `host` is the module name (only applicable to the `state` scheme). To address the
-current module where the name may not be known `//.` can be used. Alternatively the module's
-alias could be used.
+the optional `host` is the module name (only applicable to the `state` scheme). Alternatively the module's
+alias can be used.
 
 the `path` is the relative data location to get or set.
 
@@ -49,11 +48,6 @@ state:/user.name
 user name within a `users` module area of the store
 ```
 state://users/user.name
-```
-
-users name within the current module's area of the store
-```
-state://./user.name
 ```
 
 user name to the output (writeonly)
