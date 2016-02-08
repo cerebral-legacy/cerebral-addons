@@ -3,10 +3,10 @@ import isTruthy from '../helpers/isTruthy'
 import toDisplayName from '../helpers/toDisplayName'
 
 export default function (...paths) {
-  const getters = paths.map(path => getCompiler(path))
+  const getters = paths.map((path) => getCompiler(path))
 
   const or = function or (args) {
-    const getter = getters.find(getter => isTruthy(getter(args)))
+    const getter = getters.find((getter) => isTruthy(getter(args)))
     return getter ? getter(args) : undefined
   }
 

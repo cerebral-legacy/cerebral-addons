@@ -4,7 +4,7 @@ import controller from '../helpers/controller'
 import copy from '../../src/factories/copy'
 
 controller.addModules({
-  mod: module => {
+  mod: (module) => {
     module.addSignals({
       copyAll: { chain: [ copy('state://./', 'output') ], sync: true },
       replaceAll: { chain: [ copy('input:/', 'state://./') ], sync: true }

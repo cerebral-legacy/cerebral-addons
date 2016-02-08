@@ -18,7 +18,7 @@ export default function (path, onValue = true, offValue = false) {
   const toggle = function toggleRead (args) {
     let value = getValue(args)
     if (value && typeof value.then === 'function') {
-      value.then(val => toggleWrite(args, val, true)).catch(args.output.error)
+      value.then((val) => toggleWrite(args, val, true)).catch(args.output.error)
     } else {
       toggleWrite(args, value)
     }

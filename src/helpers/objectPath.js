@@ -3,7 +3,7 @@ export function getPathValue (obj, path) {
   if (obj && path) {
     if (Array.isArray(path)) {
       value = obj
-      path.forEach(key => {
+      path.forEach((key) => {
         if (value) {
           value = value[key]
         }
