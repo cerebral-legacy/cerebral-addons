@@ -6,6 +6,8 @@ import copy from '../src/factories/copy'
 import and from '../src/operators/and'
 import or from '../src/operators/or'
 import not from '../src/operators/not'
+import isEqual from '../src/operators/isEqual'
+import isDeepEqual from '../src/operators/isDeepEqual'
 
 controller.addSignals({
   andTrue: { chain: [copy(and('t1', 't2'), 'output')], sync: true },
@@ -18,7 +20,11 @@ controller.addSignals({
   orTrue2: { chain: [copy(or('f1', 't2'), 'output')], sync: true },
   nestedTrue: { chain: [copy(or('f1', and('t1', or('f2', 't2'))), 'output')], sync: true },
   nestedFalse: { chain: [copy(or('f1', and('t1', 'f2')), 'output')], sync: true },
-  not: { chain: [copy(not(or('f1', and('t1', or('f2', 't2')))), 'output')], sync: true }
+  not: { chain: [copy(not(or('f1', and('t1', or('f2', 't2')))), 'output')], sync: true },
+  isEqual: { chain: [copy(isEqual('eq1', 'eq2'), 'output')], sync: true },
+  isNotEqual: { chain: [copy(isEqual('neq1', 'neq2'), 'output')], sync: true },
+  isDeepEqual: { chain: [copy(isDeepEqual('deq1', 'deq2'), 'output')], sync: true },
+  isNotDeepEqual: { chain: [copy(isDeepEqual('ndeq1', 'ndeq2'), 'output')], sync: true }
 })
 const signals = controller.getSignals()
 
@@ -34,6 +40,10 @@ describe('operators', function () {
     tree.set({
       t1: 1, t2: 2,
       f1: '', f2: {},
+      eq1: 1, eq2: 1,
+      neq1: 1, neq2: 2,
+      deq1: { k: 1 }, deq2: { k: 1 },
+      ndeq1: { k: 1 }, ndeq2: { k: 2 },
       output: null
     })
     tree.commit()
@@ -86,6 +96,30 @@ describe('operators', function () {
   describe('not', function () {
     it('returns false', function () {
       signals.not()
+      expect(tree.get(['output'])).to.be.false
+    })
+  })
+
+  describe('isEqual', function () {
+    it('returns true for equal values', function () {
+      signals.isEqual()
+      expect(tree.get(['output'])).to.be.true
+    })
+
+    it('returns false for not equal values', function () {
+      signals.isNotEqual()
+      expect(tree.get(['output'])).to.be.false
+    })
+  })
+
+  describe('isDeepEqual', function () {
+    it('returns true for equal values', function () {
+      signals.isDeepEqual()
+      expect(tree.get(['output'])).to.be.true
+    })
+
+    it('returns false for not equal values', function () {
+      signals.isNotDeepEqual()
       expect(tree.get(['output'])).to.be.false
     })
   })

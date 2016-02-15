@@ -3,6 +3,8 @@ module.exports = {
   copy: require('./copy'),
   debounce: require('./debounce'),
   findWhere: require('./findWhere'),
+  isDeepEqual: require('./isDeepEqual'),
+  isEqual: require('./isEqual'),
   merge: require('./merge'),
   not: require('./not'),
   or: require('./or'),

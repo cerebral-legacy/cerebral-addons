@@ -318,6 +318,28 @@ signal('doSomethingWhenBothAreTrue', [
 ]);
 ```
 
+#### isEqual
+
+```js
+signal('doSomethingWhenBothAreEqual', [
+  when(isEqual('state:/firstValue', 'input:/otherValue')), {
+    isTrue: [],
+    isFalse: []
+  }
+]);
+```
+
+#### isDeepEqual
+
+```js
+signal('doSomethingWhenBothAreSame', [
+  when(isDeepEqual('state:/firstValue', 'input:/otherValue')), {
+    isTrue: [],
+    isFalse: []
+  }
+]);
+```
+
 #### findWhere
 
 ```js
