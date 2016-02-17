@@ -6,8 +6,8 @@ import copy from '../../src/factories/copy'
 controller.addModules({
   mod: (module) => {
     module.addSignals({
-      copyAll: { chain: [ copy('state://./', 'output') ], sync: true },
-      replaceAll: { chain: [ copy('input:/', 'state://./') ], sync: true }
+      copyAll: { chain: [ copy('state://mod/', 'output') ], sync: true },
+      replaceAll: { chain: [ copy('input:/', 'state://mod/') ], sync: true }
     })
   }
 })
