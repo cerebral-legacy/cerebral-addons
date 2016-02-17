@@ -165,7 +165,7 @@ signal('itemDeleted', [
 
 When can be used to check input or state for a specific value, truthy or falsy and then run an action chain when the condition is matched. To check multiple paths, see the operators section below.
 
-* `when(path, outputs={ isTrue: when.truthy, isFalse: when.otherwise }, emptyObjectsAreFalse=true)`
+* `when(path, conditions = { 'true': when.truthy, 'false': when.otherwise })`
 
 when exports the following symbols
 
@@ -177,8 +177,8 @@ when exports the following symbols
 // simple when using default outputs
 signal('reloadData', [
   when('state:/isLoading'), {
-    isTrue: [tryAgainLater],
-    isFalse: [doReload]
+    true: [tryAgainLater],
+    false: [doReload]
   }
 ]);
 ```
@@ -290,8 +290,8 @@ cerebral-addons includes the following getters
 ```js
 signal('doSomethingWhenBothAreTrue', [
   when(and('state:/firstCondition', 'input:/otherCondition')), {
-    isTrue: [],
-    isFalse: []
+    true: [],
+    false: []
   }
 ]);
 ```
@@ -301,8 +301,8 @@ signal('doSomethingWhenBothAreTrue', [
 ```js
 signal('doSomethingWhenBothAreTrue', [
   when(or('state:/firstCondition', 'input:/otherCondition')), {
-    isTrue: [],
-    isFalse: []
+    true: [],
+    false: []
   }
 ]);
 ```
@@ -312,8 +312,8 @@ signal('doSomethingWhenBothAreTrue', [
 ```js
 signal('doSomethingWhenBothAreTrue', [
   when(and('state:/firstCondition', not('input:/otherCondition'))), {
-    isTrue: [],
-    isFalse: []
+    true: [],
+    false: []
   }
 ]);
 ```
@@ -323,8 +323,8 @@ signal('doSomethingWhenBothAreTrue', [
 ```js
 signal('doSomethingWhenBothAreEqual', [
   when(isEqual('state:/firstValue', 'input:/otherValue')), {
-    isTrue: [],
-    isFalse: []
+    true: [],
+    false: []
   }
 ]);
 ```
@@ -334,8 +334,8 @@ signal('doSomethingWhenBothAreEqual', [
 ```js
 signal('doSomethingWhenBothAreSame', [
   when(isDeepEqual('state:/firstValue', 'input:/otherValue')), {
-    isTrue: [],
-    isFalse: []
+    true: [],
+    false: []
   }
 ]);
 ```

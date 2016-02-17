@@ -19,10 +19,10 @@ describe('when()', function () {
         }
       },
       output: {
-        isTrue () {
+        true () {
           expect(true).to.be.ok
         },
-        isFalse () {
+        false () {
         }
       }
     })
@@ -38,10 +38,10 @@ describe('when()', function () {
         test: true
       },
       output: {
-        isTrue () {
+        true () {
           expect(true).to.be.ok
         },
-        isFalse () {
+        false () {
         }
       }
     })
@@ -60,9 +60,9 @@ describe('when()', function () {
         }
       },
       output: {
-        isTrue () {
+        true () {
         },
-        isFalse () {
+        false () {
           expect(true).to.be.ok
         }
       }
@@ -79,9 +79,9 @@ describe('when()', function () {
         test: false
       },
       output: {
-        isTrue () {
+        true () {
         },
-        isFalse () {
+        false () {
           expect(true).to.be.ok
         }
       }

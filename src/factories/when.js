@@ -4,7 +4,7 @@ const truthy = Symbol('truthy')
 const falsy = Symbol('falsy')
 const otherwise = Symbol('otherwise')
 
-function when (path, outputs = { isTrue: truthy, isFalse: otherwise }) {
+function when (path, conditions = { 'true': truthy, 'false': otherwise }) {
   const getValue = getCompiler(path)
 
   const whenTest = (args, value) => {
@@ -17,8 +17,8 @@ function when (path, outputs = { isTrue: truthy, isFalse: otherwise }) {
     let outputPath
     let test
 
-    for (let path in outputs) {
-      test = outputs[path]
+    for (let path in conditions) {
+      test = conditions[path]
       if (test === otherwise) {
         otherwisePath = path
       } else {
@@ -45,7 +45,7 @@ function when (path, outputs = { isTrue: truthy, isFalse: otherwise }) {
     }
   }
 
-  action.outputs = Object.keys(outputs)
+  action.outputs = Object.keys(conditions)
 
   action.displayName = `addons.when(${toDisplayName(path, getValue)})`
 
