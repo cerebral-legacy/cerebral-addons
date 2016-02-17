@@ -8,6 +8,9 @@ import or from '../src/operators/or'
 import not from '../src/operators/not'
 import isEqual from '../src/operators/isEqual'
 import isDeepEqual from '../src/operators/isDeepEqual'
+import literal from '../src/operators/literal'
+import compose from '../src/operators/compose'
+import get from '../src/operators/get'
 
 controller.addSignals({
   andTrue: { chain: [copy(and('t1', 't2'), 'output')], sync: true },
@@ -24,7 +27,15 @@ controller.addSignals({
   isEqual: { chain: [copy(isEqual('eq1', 'eq2'), 'output')], sync: true },
   isNotEqual: { chain: [copy(isEqual('neq1', 'neq2'), 'output')], sync: true },
   isDeepEqual: { chain: [copy(isDeepEqual('deq1', 'deq2'), 'output')], sync: true },
-  isNotDeepEqual: { chain: [copy(isDeepEqual('ndeq1', 'ndeq2'), 'output')], sync: true }
+  isNotDeepEqual: { chain: [copy(isDeepEqual('ndeq1', 'ndeq2'), 'output')], sync: true },
+  literal: { chain: [copy(literal('literal'), 'output')], sync: true },
+  compose: { chain: [copy(compose({
+    key1: 'val',
+    key2: {
+      sub: literal('subValue')
+    },
+    key3: get('t1')
+  }), 'output')], sync: true }
 })
 const signals = controller.getSignals()
 
@@ -121,6 +132,26 @@ describe('operators', function () {
     it('returns false for not equal values', function () {
       signals.isNotDeepEqual()
       expect(tree.get(['output'])).to.be.false
+    })
+  })
+
+  describe('literal', function () {
+    it('copies a literal value', function () {
+      signals.literal()
+      expect(tree.get(['output'])).to.equal('literal')
+    })
+  })
+
+  describe('compose', function () {
+    it('composes the results of many getters', function () {
+      signals.compose()
+      expect(tree.get(['output'])).to.eql({
+        key1: 'val',
+        key2: {
+          sub: 'subValue'
+        },
+        key3: 1
+      })
     })
   })
 

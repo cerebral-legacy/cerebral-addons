@@ -296,27 +296,24 @@ signal('doSomethingWhenBothAreTrue', [
 ]);
 ```
 
-#### or
+#### compose
+
+Compose replaces all getters found in object given to the compose factory with the runtime values
+
+> Compose doesn't currently support async getters
 
 ```js
-signal('doSomethingWhenBothAreTrue', [
-  when(or('state:/firstCondition', 'input:/otherCondition')), {
-    true: [],
-    false: []
-  }
+signal('doSomething', [
+  copy(compose({
+    fromInput: get('input:/value'),
+    fromState: get('state:/value')
+  }), 'output:/composed')
 ]);
 ```
 
-#### not
+#### get
 
-```js
-signal('doSomethingWhenBothAreTrue', [
-  when(and('state:/firstCondition', not('input:/otherCondition'))), {
-    true: [],
-    false: []
-  }
-]);
-```
+see `compose`
 
 #### isEqual
 
@@ -334,6 +331,36 @@ signal('doSomethingWhenBothAreEqual', [
 ```js
 signal('doSomethingWhenBothAreSame', [
   when(isDeepEqual('state:/firstValue', 'input:/otherValue')), {
+    true: [],
+    false: []
+  }
+]);
+```
+
+#### literal
+
+```js
+signal('doSomething', [
+  copy(literal('literal'), 'output:/value')
+]);
+```
+
+#### not
+
+```js
+signal('doSomethingWhenBothAreTrue', [
+  when(and('state:/firstCondition', not('input:/otherCondition'))), {
+    true: [],
+    false: []
+  }
+]);
+```
+
+#### or
+
+```js
+signal('doSomethingWhenBothAreTrue', [
+  when(or('state:/firstCondition', 'input:/otherCondition')), {
     true: [],
     false: []
   }
