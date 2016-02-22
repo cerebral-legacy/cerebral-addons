@@ -163,7 +163,7 @@ signal('itemDeleted', [
 
 #### when
 
-When can be used to check input or state for a specific value, truthy or falsy and then run an action chain when the condition is matched. To check multiple paths, see the operators section below.
+When can be used to check input or state for a specific value, truthy or falsy and then run an action chain when the condition is matched. To check multiple paths, see the operators section below. If no `when.otherwise` condition is provided then an `otherwise` output path will be created for you.
 
 * `when(path, conditions = { 'true': when.truthy, 'false': when.otherwise })`
 
@@ -185,7 +185,10 @@ signal('reloadData', [
 
 ```js
 // create custom output path names
-let whenUser = when('state://users/currentUser', { isLoggedIn: when.truthy, isUnknown: when.otherwise });
+let whenUser = when('state://users/currentUser', {
+  isLoggedIn: when.truthy,
+  isUnknown: when.otherwise
+});
 
 signal('securePageOpened', [
   whenUser, {
@@ -197,13 +200,27 @@ signal('securePageOpened', [
 
 ```js
 // check for specific values
-let whenFormIsValid = when('state:/form.errorMessage', { valid: 'no errors found', invalid: when.otherwise });
+let whenFormIsValid = when('state:/form.errorMessage', {
+  valid: 'no errors found',
+  invalid: when.otherwise
+});
 
 signal('formSubmitted', [
   validateForm,
   whenFormIsValid, {
     valid: [sendToServer],
     invalid: [showErrorSnackBarMessage]
+  }
+]);
+```
+
+```js
+// check for specific values against an array of possible matches
+signal('somethingHappened', [
+  when('input:/actionType', [ 'close', 'open' ]), {
+    close: [],
+    open: [],
+    otherwise: []
   }
 ]);
 ```

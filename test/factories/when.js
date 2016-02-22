@@ -6,7 +6,7 @@ beforeEach(reset)
 afterEach(check)
 
 describe('when()', function () {
-  it('should call isTrue when true', function () {
+  it('should call true when true', function () {
     expectCount(2)
 
     const action = when('test')
@@ -28,7 +28,7 @@ describe('when()', function () {
     })
   })
 
-  it('should call isTrue when input is true', function () {
+  it('should call true when input is true', function () {
     expectCount(1)
 
     const action = when('input:/test')
@@ -47,7 +47,7 @@ describe('when()', function () {
     })
   })
 
-  it('should call isFalse when false', function () {
+  it('should call false when false', function () {
     expectCount(2)
 
     const action = when('test')
@@ -69,7 +69,7 @@ describe('when()', function () {
     })
   })
 
-  it('should call isFalse when input is false', function () {
+  it('should call false when input is false', function () {
     expectCount(1)
 
     const action = when('input:/test')
@@ -127,6 +127,52 @@ describe('when()', function () {
         },
         no () {
           expect(true).to.be.ok
+        }
+      }
+    })
+  })
+
+  it('should call implicitally add otherwise when not supplied', function () {
+    expectCount(2)
+
+    const action = when('test', { yes: true })
+
+    action({
+      state: {
+        get (path) {
+          expect(path).to.equal('test')
+          return false
+        }
+      },
+      output: {
+        yes () {
+        },
+        otherwise () {
+          expect(true).to.be.ok
+        }
+      }
+    })
+  })
+
+  it('should accept an array of conditions', function () {
+    expectCount(2)
+
+    const action = when('test', [ 'yes', 'no' ])
+
+    action({
+      state: {
+        get (path) {
+          expect(path).to.equal('test')
+          return 'no'
+        }
+      },
+      output: {
+        yes () {
+        },
+        no () {
+          expect(true).to.be.ok
+        },
+        otherwise () {
         }
       }
     })

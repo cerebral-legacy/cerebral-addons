@@ -1,6 +1,6 @@
 {
   "name": "cerebral-addons",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "An actions and factories utility belt for Cerebral",
   "main": "index.js",
   "scripts": {
@@ -34,16 +34,16 @@
     "cerebral": "^0.33.30",
     "cerebral-model-baobab": "^0.4.7",
     "chai": "^3.5.0",
-    "eslint": "^2.1.0",
+    "eslint": "^2.2.0",
     "mocha": "^2.4.5",
     "parallelshell": "^2.0.0",
     "rimraf": "^2.5.2",
     "snazzy": "^3.0.0",
-    "standard": "^6.0.5",
+    "standard": "^6.0.7",
     "watch": "^0.17.1"
   },
   "dependencies": {
     "cerebral-url-scheme-compiler": "^0.4.1",
-    "lodash": "^4.5.0"
+    "lodash": "^4.5.1"
   }
 }
