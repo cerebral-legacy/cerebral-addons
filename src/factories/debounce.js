@@ -27,6 +27,10 @@ export default function (time, continueChain, { terminateChain = [], immediate =
       if (pending[id].terminate) {
         // terminate the previous signal
         pending[id].terminate()
+        clearTimeout(pending[id].timeout)
+        pending[id] = {
+          timeout: setTimeout(timeout, time)
+        }
       }
       // replace previous signal with this one
       pending[id].continue = output.continue
