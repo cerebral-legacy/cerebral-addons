@@ -1,12 +1,17 @@
 const pending = {}
 
-export default function (time, continueChain, options = {}) {
+export default function (time, continueChain, options = null) {
   const id = Symbol('id')
+
+  if (options === null) {
+    console.warn('cerebral-addons: calling debounce() without options has been temporarily deprecated. https://gist.github.com/garth/c1ff94b9cb41ad1b107d')
+  }
+
   const {
     terminateChain = [],
     immediate = true,
     throttle = true,
-  } = options
+  } = (options || {})
 
   const timeout = function debounceTimeout () {
     if (pending[id].continue) {
