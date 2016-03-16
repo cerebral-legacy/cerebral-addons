@@ -1,11 +1,60 @@
 /*global beforeEach,afterEach,describe,it*/
 import debounce from '../../src/factories/debounce'
 import { reset, check, expect, expectCount } from '../helpers/chaiCounter'
+import controller from '../helpers/controller'
+
+function increaseCount ({ state }) {
+  state.set('count', state.get('count') + 1)
+}
+
+controller.addSignals({
+  increaseImmediate: {chain: [debounce(1, [increaseCount])], sync: true},
+  increaseNotImmediate: {chain: [debounce(1, [increaseCount], {
+    immediate: false
+  })], sync: true}
+})
+
+const signals = controller.getSignals()
+let tree
 
 beforeEach(reset)
 afterEach(check)
 
 describe('debounce()', function () {
+  beforeEach(function () {
+    tree = controller.model.tree
+    tree.set({
+      count: 0
+    })
+    tree.commit()
+  })
+
+  it('should not call increase more than twice when immediate', function (done) {
+    signals.increaseImmediate()
+    signals.increaseImmediate()
+    signals.increaseImmediate()
+    signals.increaseImmediate()
+    signals.increaseImmediate()
+
+    setTimeout(function () {
+      expect(tree.get('count')).to.equal(2)
+      done()
+    }, 10)
+  })
+
+  it('should not call increase more than once when not immediate', function (done) {
+    signals.increaseNotImmediate()
+    signals.increaseNotImmediate()
+    signals.increaseNotImmediate()
+    signals.increaseNotImmediate()
+    signals.increaseNotImmediate()
+
+    setTimeout(function () {
+      expect(tree.get('count')).to.equal(1)
+      done()
+    }, 10)
+  })
+
   it('should not call output more than twice when immediate', function (done) {
     expectCount(1)
     let terminated = 0
