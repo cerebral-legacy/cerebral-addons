@@ -9,11 +9,11 @@ function increaseCount ({ state }) {
 
 controller.addSignals({
   increaseImmediate: {chain: [debounce(1, [increaseCount], {
-    clearPending: true
+    throttle: false
   })], sync: true},
   increaseNotImmediate: {chain: [debounce(1, [increaseCount], {
     immediate: false,
-    clearPending: true
+    throttle: false
   })], sync: true}
 })
 
@@ -63,7 +63,7 @@ describe('debounce()', function () {
     let terminated = 0
     let continued = 0
 
-    const chain = debounce(10, [], { immediate: true, clearPending: true })
+    const chain = debounce(10, [], { immediate: true, throttle: false })
 
     const args = {
       output: {
@@ -92,7 +92,7 @@ describe('debounce()', function () {
     let terminated = 0
     let continued = 0
 
-    const chain = debounce(10, [], { immediate: true })
+    const chain = debounce(10, [], { immediate: true, throttle: true })
 
     const args = {
       output: {
@@ -123,7 +123,7 @@ describe('debounce()', function () {
     expectCount(1)
     let terminated = 0
 
-    const chain = debounce(10, [], { immediate: false, clearPending: true })
+    const chain = debounce(10, [], { immediate: false, throttle: false })
 
     const args = {
       output: {
@@ -149,7 +149,7 @@ describe('debounce()', function () {
     let terminated = 0
     let continued = 0
 
-    const chain = debounce(10, [], { immediate: false, clearPending: true })
+    const chain = debounce(10, [], { immediate: false, throttle: false })
 
     const args = {
       output: {
@@ -181,7 +181,7 @@ describe('debounce()', function () {
     let terminated = 0
     let continued = 0
 
-    const chain = debounce(10, [], { clearPending: true })
+    const chain = debounce(10, [], { clearPending: true, throttle: true })
 
     const args = {
       output: {

@@ -5,7 +5,7 @@ export default function (time, continueChain, options = {}) {
   const {
     terminateChain = [],
     immediate = true,
-    clearPending = false
+    throttle = true,
   } = options
 
   const timeout = function debounceTimeout () {
@@ -35,7 +35,7 @@ export default function (time, continueChain, options = {}) {
 
         // convert from throttle to a debounce
         // todo: this flag should eventually be removed
-        if (clearPending) {
+        if (!throttle) {
           clearTimeout(pending[id].timeout)
           pending[id] = {
             timeout: setTimeout(timeout, time)
