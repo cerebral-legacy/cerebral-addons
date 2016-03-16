@@ -15,6 +15,7 @@ module.exports = {
   push: require('./push'),
   set: require('./set'),
   shift: require('./shift'),
+  throttle: require('./throttle'),
   toggle: require('./toggle'),
   unset: require('./unset'),
   unshift: require('./unshift'),

@@ -101,7 +101,7 @@ signal('increment', [
 
 #### debounce
 
-* `debounce(time, continueChain, { terminateChain = [], immediate = true })`
+* `debounce(time, continueChain, { terminateChain = [], immediate = true, throttle = true })`
 
 debounce can be used to limit the number a times an actionChain is called, for example on keyboard activity.
 
@@ -112,7 +112,7 @@ options to `{ immediate: false }`.
 It is also possible to pass a `terminateChain` to the options which will be called whenever a signal is terminated.
 
 ```js
-signal('fieldChanged', [
+signal('keyPressed', [
   copy('input:/value', 'state:/form.field'),
   debounce(500, [
     validateForm
@@ -132,6 +132,23 @@ signal('optionsFormOpened', [
     error: []
   }],
   set('state:/isLoading', 'false')
+]);
+```
+
+#### throttle
+
+* `throttle(time, continueChain, { terminateChain = [] })`
+
+throttle can be used to limit the number a times an actionChain is called, for example on keyboard activity.
+
+It is also possible to pass a `terminateChain` to the options which will be called whenever a signal is terminated.
+
+```js
+signal('KeyPressed', [
+  copy('input:/value', 'state:/form.field'),
+  throttle(500, [
+    validateForm
+  ])
 ]);
 ```
 

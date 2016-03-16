@@ -11,6 +11,7 @@ export default function (time, continueChain, options = null) {
     terminateChain = [],
     immediate = true,
     throttle = true,
+    _displayName = 'debounce'
   } = (options || {})
 
   const timeout = function debounceTimeout () {
@@ -71,7 +72,7 @@ export default function (time, continueChain, options = null) {
     'terminate'
   ]
 
-  debounce.displayName = `addons.debounce(${time}, ...)`
+  debounce.displayName = `addons.${_displayName}(${time}, ...)`
 
   return [
     debounce, {
