@@ -1,7 +1,12 @@
 const pending = {}
 
-export default function (time, continueChain, { terminateChain = [], immediate = true } = {}) {
+export default function (time, continueChain, options = {}) {
   const id = Symbol('id')
+  const {
+    terminateChain = [],
+    immediate = true,
+    clearPending = false
+  } = options
 
   const timeout = function debounceTimeout () {
     if (pending[id].continue) {
@@ -27,9 +32,14 @@ export default function (time, continueChain, { terminateChain = [], immediate =
       if (pending[id].terminate) {
         // terminate the previous signal
         pending[id].terminate()
-        clearTimeout(pending[id].timeout)
-        pending[id] = {
-          timeout: setTimeout(timeout, time)
+
+        // convert from throttle to a debounce
+        // todo: this flag should eventually be removed
+        if (clearPending) {
+          clearTimeout(pending[id].timeout)
+          pending[id] = {
+            timeout: setTimeout(timeout, time)
+          }
         }
       }
       // replace previous signal with this one
