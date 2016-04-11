@@ -446,6 +446,13 @@ copy('input:/newUser', push('state:/users'))
 copy('input:/newUser', unshift('state:/users'))
 ```
 
+## Note on Adblockers
+
+Some adblockers such as uBlock Origin may block access to `pop.js` during development. This can
+be resolved by turning off ad blocking for localhost or using webpack (or similar) for
+development. This shouldn't be an issue for production deployments if you are packaging your
+production dependencies in a combined `.min.js`.
+
 ## Contribute
 
 Fork repo
