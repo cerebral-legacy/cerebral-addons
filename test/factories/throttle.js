@@ -11,7 +11,7 @@ controller.addSignals({
   increaseImmediateThrottle: {
     chain: [
       throttle(1, [ increaseCount ])
-    ], sync: true}
+    ], immediate: true}
 })
 
 const signals = controller.getSignals()

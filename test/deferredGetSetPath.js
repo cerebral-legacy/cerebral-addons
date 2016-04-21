@@ -13,10 +13,10 @@ afterEach(check)
 controller.addSignals({
   setTodoViaSetPath: { chain: [
     set(setPath`state:/todos.${'input:/todoId'}`, 'newValue')
-  ], sync: true },
+  ], immediate: true },
   copyTodoViaGetPath: { chain: [
     copy(getPath`state:/todos.${'input:/todoId'}`, 'state:/output')
-  ], sync: true }
+  ], immediate: true }
 })
 const signals = controller.getSignals()
 let tree

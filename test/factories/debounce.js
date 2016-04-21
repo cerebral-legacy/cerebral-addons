@@ -10,11 +10,11 @@ function increaseCount ({ state }) {
 controller.addSignals({
   increaseImmediate: {chain: [debounce(1, [increaseCount], {
     throttle: false
-  })], sync: true},
+  })], immediate: true},
   increaseNotImmediate: {chain: [debounce(1, [increaseCount], {
     immediate: false,
     throttle: false
-  })], sync: true}
+  })], immediate: true}
 })
 
 const signals = controller.getSignals()

@@ -17,7 +17,7 @@ const setAsync = (args, value) => new Promise(resolve => setTimeout(() => {
 }, 1))
 
 controller.addSignals({
-  customCopy: { chain: [copy(args => 'x', (args, val) => expect(val).to.equal('x'))], sync: true },
+  customCopy: { chain: [copy(args => 'x', (args, val) => expect(val).to.equal('x'))], immediate: true },
   asyncFromCopy: [
     [
       copy(getAsync, (args, val) => output = val),

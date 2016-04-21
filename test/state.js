@@ -11,12 +11,12 @@ import shift from '../src/state/shift'
 import unshift from '../src/state/unshift'
 
 controller.addSignals({
-  findWhere: { chain: [copy(findWhere('array', { value: 'c' }), 'output')], sync: true },
-  merge: { chain: [copy('input:/value', merge('output'))], sync: true },
-  pop: { chain: [copy(pop('array'), 'output')], sync: true },
-  push: { chain: [copy('input:/value', push('array'))], sync: true },
-  shift: { chain: [copy(shift('array'), 'output')], sync: true },
-  unshift: { chain: [copy('input:/value', unshift('array'))], sync: true }
+  findWhere: { chain: [copy(findWhere('array', { value: 'c' }), 'output')], immediate: true },
+  merge: { chain: [copy('input:/value', merge('output'))], immediate: true },
+  pop: { chain: [copy(pop('array'), 'output')], immediate: true },
+  push: { chain: [copy('input:/value', push('array'))], immediate: true },
+  shift: { chain: [copy(shift('array'), 'output')], immediate: true },
+  unshift: { chain: [copy('input:/value', unshift('array'))], immediate: true }
 })
 const signals = controller.getSignals()
 

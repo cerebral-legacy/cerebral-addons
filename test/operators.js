@@ -13,29 +13,29 @@ import compose from '../src/operators/compose'
 import get from '../src/operators/get'
 
 controller.addSignals({
-  andTrue: { chain: [copy(and('t1', 't2'), 'output')], sync: true },
-  andFalse: { chain: [copy(and('f1', 'f2'), 'output')], sync: true },
-  andFalse1: { chain: [copy(and('t1', 'f2'), 'output')], sync: true },
-  andFalse2: { chain: [copy(and('f1', 't2'), 'output')], sync: true },
-  orTrue: { chain: [copy(or('t1', 't2'), 'output')], sync: true },
-  orFalse: { chain: [copy(or('f1', 'f2'), 'output')], sync: true },
-  orTrue1: { chain: [copy(or('t1', 'f2'), 'output')], sync: true },
-  orTrue2: { chain: [copy(or('f1', 't2'), 'output')], sync: true },
-  nestedTrue: { chain: [copy(or('f1', and('t1', or('f2', 't2'))), 'output')], sync: true },
-  nestedFalse: { chain: [copy(or('f1', and('t1', 'f2')), 'output')], sync: true },
-  not: { chain: [copy(not(or('f1', and('t1', or('f2', 't2')))), 'output')], sync: true },
-  isEqual: { chain: [copy(isEqual('eq1', 'eq2'), 'output')], sync: true },
-  isNotEqual: { chain: [copy(isEqual('neq1', 'neq2'), 'output')], sync: true },
-  isDeepEqual: { chain: [copy(isDeepEqual('deq1', 'deq2'), 'output')], sync: true },
-  isNotDeepEqual: { chain: [copy(isDeepEqual('ndeq1', 'ndeq2'), 'output')], sync: true },
-  literal: { chain: [copy(literal('literal'), 'output')], sync: true },
+  andTrue: { chain: [copy(and('t1', 't2'), 'output')], immediate: true },
+  andFalse: { chain: [copy(and('f1', 'f2'), 'output')], immediate: true },
+  andFalse1: { chain: [copy(and('t1', 'f2'), 'output')], immediate: true },
+  andFalse2: { chain: [copy(and('f1', 't2'), 'output')], immediate: true },
+  orTrue: { chain: [copy(or('t1', 't2'), 'output')], immediate: true },
+  orFalse: { chain: [copy(or('f1', 'f2'), 'output')], immediate: true },
+  orTrue1: { chain: [copy(or('t1', 'f2'), 'output')], immediate: true },
+  orTrue2: { chain: [copy(or('f1', 't2'), 'output')], immediate: true },
+  nestedTrue: { chain: [copy(or('f1', and('t1', or('f2', 't2'))), 'output')], immediate: true },
+  nestedFalse: { chain: [copy(or('f1', and('t1', 'f2')), 'output')], immediate: true },
+  not: { chain: [copy(not(or('f1', and('t1', or('f2', 't2')))), 'output')], immediate: true },
+  isEqual: { chain: [copy(isEqual('eq1', 'eq2'), 'output')], immediate: true },
+  isNotEqual: { chain: [copy(isEqual('neq1', 'neq2'), 'output')], immediate: true },
+  isDeepEqual: { chain: [copy(isDeepEqual('deq1', 'deq2'), 'output')], immediate: true },
+  isNotDeepEqual: { chain: [copy(isDeepEqual('ndeq1', 'ndeq2'), 'output')], immediate: true },
+  literal: { chain: [copy(literal('literal'), 'output')], immediate: true },
   compose: { chain: [copy(compose({
     key1: 'val',
     key2: {
       sub: literal('subValue')
     },
     key3: get('t1')
-  }), 'output')], sync: true }
+  }), 'output')], immediate: true }
 })
 const signals = controller.getSignals()
 
