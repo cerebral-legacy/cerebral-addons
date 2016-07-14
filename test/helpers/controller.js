@@ -1,5 +1,5 @@
-import Controller from 'cerebral'
-import Model from 'cerebral-model-baobab'
+import { Controller } from 'cerebral'
+import Model from 'cerebral/models/immutable'
 
 const model = Model({})
 const controller = Controller(model)

@@ -1,1 +1,1 @@
-module.exports = require('./lib/operators/not').default
+module.exports = require('./lib/not').default

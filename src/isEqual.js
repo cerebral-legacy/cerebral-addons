@@ -1,5 +1,5 @@
 import getCompiler from 'cerebral-url-scheme-compiler/get'
-import toDisplayName from '../helpers/toDisplayName'
+import toDisplayName from './helpers/toDisplayName'
 
 export default function (...paths) {
   const getters = paths.map((path) => getCompiler(path))

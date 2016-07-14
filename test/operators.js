@@ -2,15 +2,15 @@
 import './helpers/polyfills'
 import { expect } from 'chai'
 import controller from './helpers/controller'
-import copy from '../src/factories/copy'
-import and from '../src/operators/and'
-import or from '../src/operators/or'
-import not from '../src/operators/not'
-import isEqual from '../src/operators/isEqual'
-import isDeepEqual from '../src/operators/isDeepEqual'
-import literal from '../src/operators/literal'
-import compose from '../src/operators/compose'
-import get from '../src/operators/get'
+import copy from 'cerebral/operators/copy'
+import and from '../src/and'
+import or from '../src/or'
+import not from '../src/not'
+import isEqual from '../src/isEqual'
+import isDeepEqual from '../src/isDeepEqual'
+import literal from '../src/literal'
+import compose from '../src/compose'
+import get from '../src/get'
 
 controller.addSignals({
   andTrue: { chain: [copy(and('t1', 't2'), 'output')], immediate: true },
@@ -167,6 +167,6 @@ describe('operators', function () {
 
   it('shows full details in the displayName', function () {
     const displayName = copy(or(['f1'], and('t1', or('f2', 't2'))), 'output').displayName
-    expect(displayName).to.equal('addons.copy(or(["f1"], and("t1", or("f2", "t2"))), "output")')
+    expect(displayName).to.equal('operators.copy(or(["f1"], and("t1", or("f2", "t2"))), "output")')
   })
 })

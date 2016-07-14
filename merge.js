@@ -1,1 +1,1 @@
-module.exports = require('./lib/state/merge').default
+module.exports = require('./lib/merge').default

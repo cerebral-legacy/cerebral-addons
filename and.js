@@ -1,1 +1,1 @@
-module.exports = require('./lib/operators/and').default
+module.exports = require('./lib/and').default

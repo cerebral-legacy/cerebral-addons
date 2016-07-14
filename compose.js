@@ -1,1 +1,1 @@
-module.exports = require('./lib/operators/compose').default
+module.exports = require('./lib/compose').default

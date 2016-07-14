@@ -1,1 +1,1 @@
-module.exports = require('./lib/operators/get').default
+module.exports = require('./lib/get').default

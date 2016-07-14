@@ -1,1 +1,1 @@
-module.exports = require('./lib/operators/setPath').default
+module.exports = require('./lib/setPath').default

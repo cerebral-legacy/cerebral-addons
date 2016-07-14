@@ -1,1 +1,1 @@
-module.exports = require('./lib/operators/literal').default
+module.exports = require('./lib/literal').default

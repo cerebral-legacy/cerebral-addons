@@ -2,7 +2,7 @@
 import './helpers/polyfills'
 import { expect } from 'chai'
 import controller from './helpers/controller'
-import copy from '../src/factories/copy'
+import copy from 'cerebral/operators/copy'
 import findWhere from '../src/state/findWhere'
 import merge from '../src/state/merge'
 import pop from '../src/state/pop'
@@ -12,11 +12,11 @@ import unshift from '../src/state/unshift'
 
 controller.addSignals({
   findWhere: { chain: [copy(findWhere('array', { value: 'c' }), 'output')], immediate: true },
-  merge: { chain: [copy('input:/value', merge('output'))], immediate: true },
+  merge: { chain: [copy('input:value', merge('output'))], immediate: true },
   pop: { chain: [copy(pop('array'), 'output')], immediate: true },
-  push: { chain: [copy('input:/value', push('array'))], immediate: true },
+  push: { chain: [copy('input:value', push('array'))], immediate: true },
   shift: { chain: [copy(shift('array'), 'output')], immediate: true },
-  unshift: { chain: [copy('input:/value', unshift('array'))], immediate: true }
+  unshift: { chain: [copy('input:value', unshift('array'))], immediate: true }
 })
 const signals = controller.getSignals()
 

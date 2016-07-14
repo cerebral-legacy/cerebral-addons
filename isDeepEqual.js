@@ -1,1 +1,1 @@
-module.exports = require('./lib/operators/isDeepEqual').default
+module.exports = require('./lib/isDeepEqual').default

@@ -1,1 +1,1 @@
-module.exports = require('./lib/operators/or').default
+module.exports = require('./lib/or').default

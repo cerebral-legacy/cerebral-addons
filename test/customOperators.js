@@ -2,7 +2,7 @@
 import './helpers/polyfills'
 import { reset, check, expect, expectCount } from './helpers/chaiCounter'
 import controller from './helpers/controller'
-import copy from '../src/factories/copy'
+import copy from 'cerebral/operators/copy'
 
 beforeEach(reset)
 afterEach(check)
@@ -20,7 +20,7 @@ controller.addSignals({
   customCopy: { chain: [copy(args => 'x', (args, val) => expect(val).to.equal('x'))], immediate: true },
   asyncFromCopy: [
     [
-      copy(getAsync, (args, val) => output = val),
+      copy(getAsync, (args, val) => { output = val }),
       { success: [ () => resolveTest() ], error: [] }
     ]
   ],
