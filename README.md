@@ -40,7 +40,7 @@ function httpGet(url) {
 
 // use the getter
 [
-  copy(httpGet('/api/date.json'), 'state:/date'), {
+  copy(httpGet('/api/date.json'), 'state:date'), {
     success: [],
     error: []
   }
@@ -74,7 +74,7 @@ function httpPost(url) {
 
 // use the setter
 [
-  copy('state:/date', httpPost('/api/date.json')), {
+  copy('state:date', httpPost('/api/date.json')), {
     success: [],
     error: []
   }
@@ -89,7 +89,7 @@ cerebral-addons includes the following getters
 
 ```js
 export default [
-  when(and('state:/firstCondition', 'input:/otherCondition')), {
+  when(and('state:firstCondition', 'input:otherCondition')), {
     true: [],
     false: []
   }
@@ -105,9 +105,9 @@ Compose replaces all getters found in object given to the compose factory with t
 ```js
 export default [
   copy(compose({
-    fromInput: get('input:/value'),
-    fromState: get('state:/value')
-  }), 'output:/composed')
+    fromInput: get('input:value'),
+    fromState: get('state:value')
+  }), 'output:composed')
 ]
 ```
 
@@ -119,7 +119,7 @@ see `compose`
 
 ```js
 export default [
-  when(isEqual('state:/firstValue', 'input:/otherValue')), {
+  when(isEqual('state:firstValue', 'input:otherValue')), {
     true: [],
     false: []
   }
@@ -130,7 +130,7 @@ export default [
 
 ```js
 export default [
-  when(isDeepEqual('state:/firstValue', 'input:/otherValue')), {
+  when(isDeepEqual('state:firstValue', 'input:otherValue')), {
     true: [],
     false: []
   }
@@ -141,7 +141,7 @@ export default [
 
 ```js
 export default [
-  copy(literal('literal'), 'output:/value')
+  copy(literal('literal'), 'output:value')
 ]
 ```
 
@@ -149,7 +149,7 @@ export default [
 
 ```js
 export default [
-  when(and('state:/firstCondition', not('input:/otherCondition'))), {
+  when(and('state:firstCondition', not('input:otherCondition'))), {
     true: [],
     false: []
   }
@@ -160,7 +160,7 @@ export default [
 
 ```js
 export default [
-  when(or('state:/firstCondition', 'input:/otherCondition')), {
+  when(or('state:firstCondition', 'input:otherCondition')), {
     true: [],
     false: []
   }
@@ -170,7 +170,7 @@ export default [
 #### findWhere
 
 ```js
-copy(findWhere('state:/users', { name: 'John' }), 'output:/john')
+copy(findWhere('state:users', { name: 'John' }), 'output:john')
 ```
 
 #### pop
@@ -178,7 +178,7 @@ copy(findWhere('state:/users', { name: 'John' }), 'output:/john')
 > pop also modifies the array in the state
 
 ```js
-copy(pop('state:/users'), 'output:/lastUser')
+copy(pop('state:users'), 'output:lastUser')
 ```
 
 
@@ -187,7 +187,7 @@ copy(pop('state:/users'), 'output:/lastUser')
 > shift also modifies the array in the state
 
 ```js
-copy(shift('state:/users'), 'output:/firstUser')
+copy(shift('state:users'), 'output:firstUser')
 ```
 
 ### Included setters
@@ -197,19 +197,19 @@ cerebral-addons includes the following setters
 #### merge
 
 ```js
-copy('input:/newData', merge('state:/allData'))
+copy('input:newData', merge('state:allData'))
 ```
 
 #### push
 
 ```js
-copy('input:/newUser', push('state:/users'))
+copy('input:newUser', push('state:users'))
 ```
 
 #### unshift
 
 ```js
-copy('input:/newUser', unshift('state:/users'))
+copy('input:newUser', unshift('state:users'))
 ```
 
 ## Note on Adblockers
