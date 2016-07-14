@@ -9,12 +9,11 @@ import and from 'cerebral-addons/and';
 import merge from 'cerebral-addons/merge';
 ```
 
-## Operators
+## Getters/Setters
 
-In place of the data paths, cerebral-addons supports operators. There are two types of operators,
-a getter operator and a setter operator. If either of these operators is detected to by async
-(indicated by the returning of a promise) then the addon must be marked as async in the chain and
-subsequently define success and error paths.
+cerebral-operators supports custom getter and setter functions in place of strings. If either of these
+functions is detected to by async (indicated by the returning of a promise) then the addon must be marked
+as async in the chain and subsequently define success and error paths.
 
 ### getters
 

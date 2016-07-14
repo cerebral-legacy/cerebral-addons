@@ -1,5 +1,4 @@
 /*global beforeEach,afterEach,describe,it*/
-import './helpers/polyfills'
 import { reset, check, expect, expectCount } from './helpers/chaiCounter'
 import controller from './helpers/controller'
 import copy from 'cerebral/operators/copy'
