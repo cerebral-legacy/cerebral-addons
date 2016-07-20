@@ -2,14 +2,16 @@
 import { expect } from 'chai'
 import controller from './helpers/controller'
 import copy from 'cerebral/operators/copy'
-import and from '../src/and'
-import or from '../src/or'
-import not from '../src/not'
-import isEqual from '../src/isEqual'
-import isDeepEqual from '../src/isDeepEqual'
-import literal from '../src/literal'
-import compose from '../src/compose'
-import get from '../src/get'
+import {
+  and,
+  or,
+  not,
+  isEqual,
+  isDeepEqual,
+  literal,
+  compose,
+  get
+} from '..'
 
 controller.addSignals({
   andTrue: { chain: [copy(and('t1', 't2'), 'output')], immediate: true },

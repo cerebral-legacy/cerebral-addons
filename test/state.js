@@ -2,12 +2,14 @@
 import { expect } from 'chai'
 import controller from './helpers/controller'
 import copy from 'cerebral/operators/copy'
-import findWhere from '../src/state/findWhere'
-import merge from '../src/state/merge'
-import pop from '../src/state/pop'
-import push from '../src/state/push'
-import shift from '../src/state/shift'
-import unshift from '../src/state/unshift'
+import {
+  findWhere,
+  merge,
+  pop,
+  push,
+  shift,
+  unshift
+} from '..'
 
 controller.addSignals({
   findWhere: { chain: [copy(findWhere('array', { value: 'c' }), 'output')], immediate: true },
