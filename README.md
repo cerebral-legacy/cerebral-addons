@@ -1,17 +1,21 @@
 # cerebral-addons [![Build Status](https://secure.travis-ci.org/cerebral/cerebral-addons.png?branch=master)](https://travis-ci.org/cerebral/cerebral-addons)
 
-Additional utilities for use with `cerebral/operators`
+Utilities for use with `cerebral`
 
 ## Usage
 
 ```js
+import copy from 'cerebral-addons/copy';
 import and from 'cerebral-addons/and';
-import merge from 'cerebral-addons/merge';
 ```
+
+> Since addons are not compatible with cerebral/operators, addons provides alternative
+implementations of `copy`, `set` and `when` which should be used in place of their
+cerebral/operator counterparts
 
 ## Getters/Setters
 
-cerebral-operators supports custom getter and setter functions in place of strings. If either of these
+cerebral-addons supports custom getter and setter functions in place of strings. If either of these
 functions is detected to by async (indicated by the returning of a promise) then the addon must be marked
 as async in the chain and subsequently define success and error paths.
 
