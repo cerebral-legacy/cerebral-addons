@@ -1,7 +1,7 @@
-/*global beforeEach,afterEach,describe,it*/
+/* global beforeEach,afterEach,describe,it */
 import { reset, check, expect, expectCount } from './helpers/chaiCounter'
 import controller from './helpers/controller'
-import copy from 'cerebral/operators/copy'
+import copy from '../src/copy'
 
 beforeEach(reset)
 afterEach(check)

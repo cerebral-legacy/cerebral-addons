@@ -1,7 +1,7 @@
-/*global beforeEach,afterEach,describe,it*/
+/* global beforeEach,afterEach,describe,it */
 import { expect } from 'chai'
 import controller from './helpers/controller'
-import copy from 'cerebral/operators/copy'
+import copy from '../src/copy'
 import {
   and,
   or,
@@ -30,13 +30,16 @@ controller.addSignals({
   isDeepEqual: { chain: [copy(isDeepEqual('deq1', 'deq2'), 'output')], immediate: true },
   isNotDeepEqual: { chain: [copy(isDeepEqual('ndeq1', 'ndeq2'), 'output')], immediate: true },
   literal: { chain: [copy(literal('literal'), 'output')], immediate: true },
-  compose: { chain: [copy(compose({
-    key1: 'val',
-    key2: {
-      sub: literal('subValue')
-    },
-    key3: get('t1')
-  }), 'output')], immediate: true }
+  compose: {
+    chain: [copy(compose({
+      key1: 'val',
+      key2: {
+        sub: literal('subValue')
+      },
+      key3: get('t1')
+    }), 'output')],
+    immediate: true
+  }
 })
 const signals = controller.getSignals()
 
@@ -50,12 +53,18 @@ describe('operators', function () {
   beforeEach(function () {
     tree = controller.model.tree
     tree.set({
-      t1: 1, t2: 2,
-      f1: '', f2: {},
-      eq1: 1, eq2: 1,
-      neq1: 1, neq2: 2,
-      deq1: { k: 1 }, deq2: { k: 1 },
-      ndeq1: { k: 1 }, ndeq2: { k: 2 },
+      t1: 1,
+      t2: 2,
+      f1: '',
+      f2: {},
+      eq1: 1,
+      eq2: 1,
+      neq1: 1,
+      neq2: 2,
+      deq1: { k: 1 },
+      deq2: { k: 1 },
+      ndeq1: { k: 1 },
+      ndeq2: { k: 2 },
       output: null
     })
     tree.commit()
@@ -168,6 +177,6 @@ describe('operators', function () {
 
   it('shows full details in the displayName', function () {
     const displayName = copy(or(['f1'], and('t1', or('f2', 't2'))), 'output').displayName
-    expect(displayName).to.equal('operators.copy(or(["f1"], and("t1", or("f2", "t2"))), "output")')
+    expect(displayName).to.equal('addons.copy(or(["f1"], and("t1", or("f2", "t2"))), "output")')
   })
 })

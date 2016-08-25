@@ -1,7 +1,7 @@
-/*global beforeEach,afterEach,describe,it*/
+/* global beforeEach,afterEach,describe,it */
 import { expect } from 'chai'
 import controller from './helpers/controller'
-import copy from 'cerebral/operators/copy'
+import copy from '../src/copy'
 import {
   findWhere,
   merge,
