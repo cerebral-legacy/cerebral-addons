@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cerebral/cerebral-operators.git"
+    "url": "git+https://github.com/cerebral-legacy/cerebral-addons.git"
   },
   "keywords": [
     "cerebral",
@@ -23,9 +23,9 @@
   "author": "Christian Alfoni",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/christianalfoni/cerebral-operators/issues"
+    "url": "https://github.com/cerebral-legacy/cerebral-addons/issues"
   },
-  "homepage": "https://github.com/christianalfoni/cerebral-operators#readme",
+  "homepage": "https://github.com/cerebral-legacy/cerebral-addons#readme",
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
